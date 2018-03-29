@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">multi-flavor-pot</string>
+
+    <string name="splash_text">精彩内容，即将呈现</string>
+
+    <string name="double_exit">再按一次退出</string>
+
+    <string name="save_city">保存当前城市</string>
+</resources>
