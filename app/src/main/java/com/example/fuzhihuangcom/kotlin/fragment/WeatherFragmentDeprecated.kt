@@ -12,7 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.fuzhihuangcom.kotlin.R
 import com.example.fuzhihuangcom.kotlin.activity.ChoiceCityActivity
-import com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo.LocationInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.weather.LocationInfo
 import com.example.fuzhihuangcom.kotlin.service.presenter.LocationPresenter
 import com.example.fuzhihuangcom.kotlin.service.view.LocationView
 import kotlinx.android.synthetic.main.fragment_weather.*

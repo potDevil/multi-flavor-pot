@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import com.example.fuzhihuangcom.kotlin.R
-import com.example.fuzhihuangcom.kotlin.fragment.BFragment
+import com.example.fuzhihuangcom.kotlin.fragment.CateFragment
 import com.example.fuzhihuangcom.kotlin.fragment.DFragment
 import com.example.fuzhihuangcom.kotlin.fragment.GirlFragment
 import com.example.fuzhihuangcom.kotlin.fragment.WeatherFragment
@@ -15,7 +15,7 @@ class MainActivity : BaseActivity() {
 
     private var fragmentList: MutableList<Fragment> = ArrayList<Fragment>();
     private lateinit var weatherFragment: WeatherFragment
-    private lateinit var bFragment: BFragment
+    private lateinit var cateFragment: CateFragment
     private lateinit var girlFragment: GirlFragment
     private lateinit var dFragment: DFragment
 
@@ -28,16 +28,16 @@ class MainActivity : BaseActivity() {
 
     private fun initFragment() {
         weatherFragment = WeatherFragment()
-        bFragment = BFragment()
+        cateFragment = CateFragment()
         girlFragment = GirlFragment()
         dFragment = DFragment()
         fragmentList.add(weatherFragment)
-        fragmentList.add(bFragment)
+        fragmentList.add(cateFragment)
         fragmentList.add(girlFragment)
         fragmentList.add(dFragment)
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.fl_container, weatherFragment)
-                .add(R.id.fl_container, bFragment)
+                .add(R.id.fl_container, cateFragment)
                 .add(R.id.fl_container, girlFragment)
                 .add(R.id.fl_container, dFragment)
                 .commitAllowingStateLoss()
@@ -60,7 +60,7 @@ class MainActivity : BaseActivity() {
         bnv.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_android -> switchFragment(weatherFragment)
-                R.id.menu_ios -> switchFragment(bFragment)
+                R.id.menu_ios -> switchFragment(cateFragment)
                 R.id.menu_girl -> switchFragment(girlFragment)
                 R.id.menu_about -> switchFragment(dFragment)
             }

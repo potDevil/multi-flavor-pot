@@ -8,4 +8,5 @@
     <color name="black">#000000</color>
     <color name="color_gray">#9A9A9A</color>
     <color name="refresh_blue">#00A9EC</color>
+    <color name="black_alpha_light">#98e2e0df</color>
 </resources>

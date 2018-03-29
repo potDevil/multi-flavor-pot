@@ -54,9 +54,8 @@ class GirlFragment : BaseLazyFragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return View.inflate(context, R.layout.fragment_girl, null)
-    }
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+         View.inflate(context, R.layout.fragment_girl, null)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         bindRequest()

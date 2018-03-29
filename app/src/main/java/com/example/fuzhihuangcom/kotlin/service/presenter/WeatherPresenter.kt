@@ -1,7 +1,7 @@
 package com.example.fuzhihuangcom.kotlin.service.presenter
 
 import android.content.Context
-import com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo.WeatherInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.weather.WeatherInfo
 import com.example.fuzhihuangcom.kotlin.service.view.View
 import com.example.fuzhihuangcom.kotlin.service.view.WeatherView
 import okhttp3.ResponseBody
@@ -30,7 +30,7 @@ class WeatherPresenter : BasePresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<WeatherInfo>() {
                     override fun onNext(w: WeatherInfo?) {
-                        weatherView.onLoadWeatherSuccess(w!!)
+                        weatherView.onLoadWeatherSuccess(w)
                     }
 
                     override fun onCompleted() {
@@ -50,7 +50,7 @@ class WeatherPresenter : BasePresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<ResponseBody>() {
                     override fun onNext(r: ResponseBody?) {
-                        weatherView.onLoadPictureSuccess(r!!)
+                        weatherView.onLoadPictureSuccess(r)
                     }
 
                     override fun onCompleted() {

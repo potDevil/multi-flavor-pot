@@ -2,9 +2,10 @@ package com.example.fuzhihuangcom.kotlin.service
 
 import com.example.fuzhihuangcom.kotlin.service.bean.BaiduGirlInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.Book
-import com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo.ChinaCityInfo
-import com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo.LocationInfo
-import com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo.WeatherInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.cate.CategoryInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.weather.ChinaCityInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.weather.LocationInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.weather.WeatherInfo
 import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -86,6 +87,8 @@ interface RetrofitService {
      * http://apicloud.mob.com/v1/cook/category/query?key=24ea856856364                             菜谱分类标签查询
      * http://apicloud.mob.com/v1/cook/menu/search?key=24ea856856364&cid=0010001007&page=1&size=20  按标签查询菜谱接口
      * http://apicloud.mob.com/v1/cook/menu/query?key=24ea856856364&id=00100010070000000001         菜谱查询接口
-     * 以上接口分级 菜谱分类 -> 获取classid -> 按classid分类检索 -> 获取具体菜id -> 根据id查询详情
      */
+    @Headers("url_name:mobApi")
+    @GET("cook/category/query?key=24ea856856364")
+    fun getCateCategory(): Observable<CategoryInfo>
 }

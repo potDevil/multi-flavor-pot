@@ -19,7 +19,7 @@ import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.COMFORT
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.COUNTY_ID
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.NO_DATA
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.SPORT
-import com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo.WeatherInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.weather.WeatherInfo
 import com.example.fuzhihuangcom.kotlin.service.presenter.WeatherPresenter
 import com.example.fuzhihuangcom.kotlin.service.view.WeatherView
 import com.example.fuzhihuangcom.kotlin.utils.imageutils.GlideAvaUtil
@@ -58,10 +58,10 @@ class WeatherFragment : BaseLazyFragment(), View.OnClickListener {
             showToast("网络故障~亲！")
         }
 
-        override fun onLoadPictureSuccess(r: ResponseBody) {
+        override fun onLoadPictureSuccess(r: ResponseBody?) {
             refreshLayout.finishRefresh()
             GlideAvaUtil.initGlide(context)
-            GlideAvaUtil.loadImage(r.string(), iv_bg)
+            GlideAvaUtil.loadImage(r?.string(), iv_bg)
         }
 
         override fun onLoadPictureError(error: String) {
@@ -70,9 +70,8 @@ class WeatherFragment : BaseLazyFragment(), View.OnClickListener {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return View.inflate(context, R.layout.fragment_weather, null)
-    }
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+        View.inflate(context, R.layout.fragment_weather, null)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

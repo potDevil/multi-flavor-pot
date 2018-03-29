@@ -1,4 +1,4 @@
-package com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo;
+package com.example.fuzhihuangcom.kotlin.service.bean.weather;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.example.fuzhihuangcom.kotlin.service.view
 
-import com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo.ChinaCityInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.weather.ChinaCityInfo
 
 /**
  * Created by fzh on 2018/1/30.

@@ -1,7 +1,7 @@
 package com.example.fuzhihuangcom.kotlin.service.presenter
 
 import android.content.Context
-import com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo.LocationInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.weather.LocationInfo
 import com.example.fuzhihuangcom.kotlin.service.view.LocationView
 import com.example.fuzhihuangcom.kotlin.service.view.View
 import rx.Subscriber

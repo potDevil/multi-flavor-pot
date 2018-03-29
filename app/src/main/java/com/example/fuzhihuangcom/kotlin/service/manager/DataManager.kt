@@ -4,9 +4,10 @@ import com.example.fuzhihuangcom.kotlin.service.RetrofitHelper
 import com.example.fuzhihuangcom.kotlin.service.RetrofitService
 import com.example.fuzhihuangcom.kotlin.service.bean.BaiduGirlInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.Book
-import com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo.ChinaCityInfo
-import com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo.LocationInfo
-import com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo.WeatherInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.cate.CategoryInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.weather.ChinaCityInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.weather.LocationInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.weather.WeatherInfo
 import okhttp3.ResponseBody
 import rx.Observable
 
@@ -14,41 +15,45 @@ import rx.Observable
  * Created by fzh on 2018/1/19.
  */
 class DataManager {
-    private var mRetrofitService: RetrofitService = RetrofitHelper.server
+    private var retrofitService: RetrofitService = RetrofitHelper.server
 
 //    constructor(context: Context) {
 //
 //    }
 
     fun getSearchBooks(name: String?, tag: String?, start: Int, count: Int): Observable<Book> {
-        return mRetrofitService.getSearchBook(name, tag, start, count)
+        return retrofitService.getSearchBook(name, tag, start, count)
     }
 
     fun getGirlInfo(num: Int): Observable<BaiduGirlInfo> {
-        return mRetrofitService.getGirlData(num, 10, "美女", "全部", "utf8")
+        return retrofitService.getGirlData(num, 10, "美女", "全部", "utf8")
     }
 
     fun getLocationInfo(location: String?): Observable<LocationInfo> {
-        return mRetrofitService.getLocation(location, "json")
+        return retrofitService.getLocation(location, "json")
     }
 
     fun getProvinceInfo(): Observable<List<ChinaCityInfo>> {
-        return mRetrofitService.getChinaProvinces()
+        return retrofitService.getChinaProvinces()
     }
 
     fun getCityInfo(provinceNum: Int): Observable<List<ChinaCityInfo>> {
-        return mRetrofitService.getChinaCity(provinceNum)
+        return retrofitService.getChinaCity(provinceNum)
     }
 
     fun getCountyInfo(provinceNum: Int, cityNum: Int): Observable<List<ChinaCityInfo>> {
-        return mRetrofitService.getChinaCounty(provinceNum, cityNum)
+        return retrofitService.getChinaCounty(provinceNum, cityNum)
     }
 
     fun getWeatherInfo(cityId: String?): Observable<WeatherInfo> {
-        return mRetrofitService.getWeather(cityId, "bc0418b57b2d4918819d3974ac1285d9")
+        return retrofitService.getWeather(cityId, "bc0418b57b2d4918819d3974ac1285d9")
     }
 
     fun getPictureUrl(): Observable<ResponseBody> {
-        return mRetrofitService.getPicture()
+        return retrofitService.getPicture()
+    }
+
+    fun getCateCategory(): Observable<CategoryInfo> {
+        return retrofitService.getCateCategory()
     }
 }

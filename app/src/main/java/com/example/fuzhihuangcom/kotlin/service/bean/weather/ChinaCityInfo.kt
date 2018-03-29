@@ -1,4 +1,4 @@
-package com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo
+package com.example.fuzhihuangcom.kotlin.service.bean.weather
 
 /**
  * Created by fzh on 2018/1/30.

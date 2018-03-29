@@ -1,6 +1,6 @@
 package com.example.fuzhihuangcom.kotlin.service.view
 
-import com.example.fuzhihuangcom.kotlin.service.bean.weatherinfo.WeatherInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.weather.WeatherInfo
 import okhttp3.ResponseBody
 
 /**
@@ -12,7 +12,7 @@ interface WeatherView : View {
 
     fun onLoadWeatherError(error: String)
 
-    fun onLoadPictureSuccess(r: ResponseBody)
+    fun onLoadPictureSuccess(r: ResponseBody?)
 
     fun onLoadPictureError(error: String)
 }
