@@ -2,4 +2,5 @@
 <resources>
     <drawable name="clr_normal">#FFFFFF</drawable>
     <drawable name="clr_pressed">#00A9EC</drawable>
+    <drawable name="black_alpha_light">#98e2e0df</drawable>
 </resources>

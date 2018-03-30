@@ -7,15 +7,15 @@ import com.example.fuzhihuangcom.kotlin.service.bean.weather.ChinaCityInfo
  */
 interface ChoiceCityView : View {
 
-    fun onProvinceSuccess(cityInfos: List<ChinaCityInfo>)
+    fun onProvinceSuccess(cityInfos: List<ChinaCityInfo>?)
 
-    fun onProvinceError(error: String)
+    fun onProvinceError(error: String?)
 
-    fun onCitySuccess(cityInfos: List<ChinaCityInfo>)
+    fun onCitySuccess(cityInfos: List<ChinaCityInfo>?)
 
-    fun onCityError(error: String)
+    fun onCityError(error: String?)
 
-    fun onCountySuccess(cityInfos: List<ChinaCityInfo>)
+    fun onCountySuccess(cityInfos: List<ChinaCityInfo>?)
 
-    fun onCountyError(error: String)
+    fun onCountyError(error: String?)
 }

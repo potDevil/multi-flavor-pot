@@ -34,7 +34,7 @@ class ChoiceCityPresenter : BasePresenter {
                     }
 
                     override fun onNext(t: List<ChinaCityInfo>?) {
-                        choiceCityView.onProvinceSuccess(t!!)
+                        choiceCityView.onProvinceSuccess(t)
                     }
 
                     override fun onError(e: Throwable?) {
@@ -53,7 +53,7 @@ class ChoiceCityPresenter : BasePresenter {
                     }
 
                     override fun onNext(t: List<ChinaCityInfo>?) {
-                        choiceCityView.onCitySuccess(t!!)
+                        choiceCityView.onCitySuccess(t)
                     }
 
                     override fun onError(e: Throwable?) {
@@ -73,7 +73,7 @@ class ChoiceCityPresenter : BasePresenter {
                     }
 
                     override fun onNext(t: List<ChinaCityInfo>?) {
-                        choiceCityView.onCountySuccess(t!!)
+                        choiceCityView.onCountySuccess(t)
                     }
 
                     override fun onError(e: Throwable?) {

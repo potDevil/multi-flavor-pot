@@ -129,6 +129,9 @@ public class CategoryInfo {
                 private String name;
                 private String parentId;
 
+                // 业务需求添加字段
+                private boolean isSelect;
+
                 public String getCtgId() {
                     return ctgId;
                 }
@@ -151,6 +154,14 @@ public class CategoryInfo {
 
                 public void setParentId(String parentId) {
                     this.parentId = parentId;
+                }
+
+                public Boolean getSelect() {
+                    return isSelect;
+                }
+
+                public void setSelect(Boolean isSelect) {
+                    this.isSelect = isSelect;
                 }
             }
 

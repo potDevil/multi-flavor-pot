@@ -52,47 +52,47 @@ class ChoiceCityActivity : BaseActivity() {
 
     private var titleText: TitleView? = null
     private var adapter: ChoiceCityAdapter? = null
-    private var mProvinceInfos: List<ChinaCityInfo> = ArrayList<ChinaCityInfo>()
-    private var mCityInfos: List<ChinaCityInfo> = ArrayList<ChinaCityInfo>()
+    private var mProvinceInfos: List<ChinaCityInfo> = ArrayList()
+    private var mCityInfos: List<ChinaCityInfo> = ArrayList()
 
     private lateinit var choiceCityPresenter: ChoiceCityPresenter
     private var mChoiceCityView: ChoiceCityView = object : ChoiceCityView {
-        override fun onProvinceSuccess(cityInfos: List<ChinaCityInfo>) {
+        override fun onProvinceSuccess(cityInfos: List<ChinaCityInfo>?) {
             titleText?.setTextTitle("省份")
             (mProvinceInfos as MutableList).clear()
-            (mProvinceInfos as MutableList).addAll(cityInfos)
+            cityInfos?.let { (mProvinceInfos as MutableList).addAll(it) }
             currentLevel = LEVEL_PROVINCE
             onLoadSuccess(cityInfos)
         }
 
-        override fun onProvinceError(error: String) {
+        override fun onProvinceError(error: String?) {
             onLoadError()
         }
 
-        override fun onCitySuccess(cityInfos: List<ChinaCityInfo>) {
+        override fun onCitySuccess(cityInfos: List<ChinaCityInfo>?) {
             titleText?.setTextTitle("市区")
             (mCityInfos as MutableList).clear()
-            (mCityInfos as MutableList).addAll(cityInfos)
+            cityInfos?.let { (mCityInfos as MutableList).addAll(it) }
             currentLevel = LEVEL_CITY
             onLoadSuccess(cityInfos)
         }
 
-        override fun onCityError(error: String) {
+        override fun onCityError(error: String?) {
             onLoadError()
         }
 
-        override fun onCountySuccess(cityInfos: List<ChinaCityInfo>) {
+        override fun onCountySuccess(cityInfos: List<ChinaCityInfo>?) {
             titleText?.setTextTitle("县级")
             currentLevel = LEVEL_COUNTY
             onLoadSuccess(cityInfos)
         }
 
-        override fun onCountyError(error: String) {
+        override fun onCountyError(error: String?) {
             onLoadError()
         }
     }
 
-    private fun onLoadSuccess(cityInfos: List<ChinaCityInfo>) {
+    private fun onLoadSuccess(cityInfos: List<ChinaCityInfo>?) {
         refreshLayout.finishRefresh()
         adapter?.setNewData(cityInfos as MutableList<ChinaCityInfo>)
     }
