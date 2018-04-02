@@ -60,6 +60,8 @@ dependencies {
     // 1.0.4 出现问题可以回退到 1.0.3
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'//没有使用特殊Header，可以不加这行
-    //key value存取
+    // key value存取
     implementation 'com.orhanobut:hawk:2.0.1'
+    // gif图
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
 }

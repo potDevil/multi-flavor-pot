@@ -20,10 +20,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitHelper {
 
     private val BASE_URL_BAIDU = "http://image.baidu.com/"
-    private val BASE_URL_DOUBAN = "https://api.douban.com/v2/"
+    private val BASE_URL_DOUBAN = "https://api.douban.com/"
     private val BASE_URL_LOCATION = "http://api.map.baidu.com/"
     private val BASE_URL_WEATHER = "http://guolin.tech/"
-    private val BASE_URL_CATE = "http://apicloud.mob.com/v1/"
+    private val BASE_URL_CATE = "http://apicloud.mob.com/"
 
     private val client: OkHttpClient by lazy { createOkHttpClient() }
 

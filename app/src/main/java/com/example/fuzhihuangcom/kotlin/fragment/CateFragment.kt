@@ -7,8 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.fuzhihuangcom.kotlin.R
+import com.example.fuzhihuangcom.kotlin.activity.CateListActivity
 import com.example.fuzhihuangcom.kotlin.adapter.CateCategoryAdapter
 import com.example.fuzhihuangcom.kotlin.adapter.CateDetailAdapter
+import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_TIP
+import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.PICTURE_URL
 import com.example.fuzhihuangcom.kotlin.service.bean.cate.CategoryInfo
 import com.example.fuzhihuangcom.kotlin.service.presenter.CateCategoryPresenter
 import com.example.fuzhihuangcom.kotlin.service.view.CateCategoryView
@@ -25,21 +28,23 @@ class CateFragment : BaseLazyFragment() {
     private var cateCategoryAdapter: CateCategoryAdapter? = null
     private var cateDetailAdapter: CateDetailAdapter? = null
     private var categoryInfos: CategoryInfo? = null
-    private var cateCategory = ArrayList<CategoryInfo.ResultBean.ChildsBeanX>()
+    private var cateCategory = ArrayList<CategoryInfo.ChildsBeanX>()
 
     private var cateCategoryView: CateCategoryView = object : CateCategoryView {
         override fun onLoadCateDataSuccess(t: CategoryInfo?) {
+            refreshLayout.finishRefresh()
             categoryInfos = t
+            cateCategory.clear()
             // 菜系分类
-            for (i in 0 until (t?.result?.childs?.size ?: 0)) {
-                t?.result?.childs?.get(i)?.let { it -> cateCategory.add(it) }
+            for (i in 0 until (t?.childs?.size ?: 0)) {
+                t?.childs?.get(i)?.let { it -> cateCategory.add(it) }
             }
             cateCategory[0].categoryInfo.select = true
-            cateCategoryAdapter?.addData(cateCategory)
+            cateCategoryAdapter?.setNewData(cateCategory)
 
-            val cateDetailInfos = ArrayList<CategoryInfo.ResultBean.ChildsBeanX.ChildsBean>()
-            for (it in 0 until (categoryInfos?.result?.childs?.get(0)?.childs?.size ?: 0)) {
-                categoryInfos?.result?.childs?.get(0)?.childs?.get(it)?.let { it1 -> cateDetailInfos.add(it1) }
+            val cateDetailInfos = ArrayList<CategoryInfo.ChildsBeanX.ChildsBean>()
+            for (it in 0 until (categoryInfos?.childs?.get(0)?.childs?.size ?: 0)) {
+                categoryInfos?.childs?.get(0)?.childs?.get(it)?.let { it1 -> cateDetailInfos.add(it1) }
             }
             cateDetailAdapter?.setNewData(cateDetailInfos)
         }
@@ -68,7 +73,7 @@ class CateFragment : BaseLazyFragment() {
     }
 
     private fun initView() {
-        val catePicture = "http://pic.58pic.com/58pic/13/90/47/84F58PICKNh_1024.jpg"
+        val catePicture = PICTURE_URL
         GlideAvaUtil.initGlide(context)
         GlideAvaUtil.loadImage(catePicture, iv_bg)
     }
@@ -80,6 +85,8 @@ class CateFragment : BaseLazyFragment() {
         cateDetailAdapter = CateDetailAdapter()
         rv_list_content.layoutManager = GridLayoutManager(context, 3)
         rv_list_content.adapter = cateDetailAdapter
+        // 下拉刷新
+        refreshLayout.setOnRefreshListener { cateCategoryPresent.getCateCategory() }
     }
 
     private fun itemOnclickListener() {
@@ -88,20 +95,30 @@ class CateFragment : BaseLazyFragment() {
                 cateCategory[i].categoryInfo.select = i == position
             }
             cateCategoryAdapter?.notifyDataSetChanged()
-            val cateDetailInfos = ArrayList<CategoryInfo.ResultBean.ChildsBeanX.ChildsBean>()
-            for (i in 0 until (categoryInfos?.result?.childs?.get(position)?.childs?.size ?: 0)) {
-                categoryInfos?.result?.childs?.get(position)?.childs?.get(i)?.let { it -> cateDetailInfos.add(it) }
+            val cateDetailInfos = ArrayList<CategoryInfo.ChildsBeanX.ChildsBean>()
+            for (i in 0 until (categoryInfos?.childs?.get(position)?.childs?.size ?: 0)) {
+                categoryInfos?.childs?.get(position)?.childs?.get(i)?.let { it -> cateDetailInfos.add(it) }
             }
             cateDetailAdapter?.setNewData(cateDetailInfos)
+        }
+
+        cateDetailAdapter?.setOnItemClickListener { adapter, _, position ->
+            val allChildCategorys = adapter.getItem(position) as CategoryInfo.ChildsBeanX.ChildsBean
+            CateListActivity.start(context, allChildCategorys.categoryInfo.ctgId, allChildCategorys.categoryInfo.name)
         }
     }
 
     private fun onLoadError() {
-//        refreshLayout.finishRefresh(false)  // 结束刷新（刷新失败）
-        showToast("网络故障~亲！")
+        refreshLayout.finishRefresh(false)  // 结束刷新（刷新失败）
+        showToast(ERROR_TIP)
     }
 
     override fun lazyLoadData() {
         cateCategoryPresent.getCateCategory()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cateCategoryPresent.onStop()
     }
 }

@@ -17,6 +17,7 @@ import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.CITY_NAME
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.COLD
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.COMFORT
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.COUNTY_ID
+import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_TIP
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.NO_DATA
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.SPORT
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.WeatherInfo
@@ -55,7 +56,7 @@ class WeatherFragment : BaseLazyFragment(), View.OnClickListener {
 
         override fun onLoadWeatherError(error: String) {
             refreshLayout.finishRefresh(false)
-            showToast("网络故障~亲！")
+            showToast(ERROR_TIP)
         }
 
         override fun onLoadPictureSuccess(r: ResponseBody?) {
@@ -66,7 +67,7 @@ class WeatherFragment : BaseLazyFragment(), View.OnClickListener {
 
         override fun onLoadPictureError(error: String) {
             refreshLayout.finishRefresh(false)
-            showToast("网络故障~亲！")
+            showToast(ERROR_TIP)
         }
     }
 

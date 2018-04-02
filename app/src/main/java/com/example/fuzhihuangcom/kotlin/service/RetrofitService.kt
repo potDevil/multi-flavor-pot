@@ -2,6 +2,8 @@ package com.example.fuzhihuangcom.kotlin.service
 
 import com.example.fuzhihuangcom.kotlin.service.bean.BaiduGirlInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.Book
+import com.example.fuzhihuangcom.kotlin.service.bean.HttpResp
+import com.example.fuzhihuangcom.kotlin.service.bean.cate.CateDetailListInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.cate.CategoryInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.ChinaCityInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.LocationInfo
@@ -22,7 +24,7 @@ interface RetrofitService {
      * 网络请求测试接口
      */
     @Headers("url_name:douban")
-    @GET("book/search")
+    @GET("v2/book/search")
     fun getSearchBook(@Query("q") name: String?
                       , @Query("tag") tag: String?
                       , @Query("start") start: Int
@@ -89,6 +91,13 @@ interface RetrofitService {
      * http://apicloud.mob.com/v1/cook/menu/query?key=24ea856856364&id=00100010070000000001         菜谱查询接口
      */
     @Headers("url_name:mobApi")
-    @GET("cook/category/query?key=24ea856856364")
-    fun getCateCategory(): Observable<CategoryInfo>
+    @GET("v1/cook/category/query?")
+    fun getCateCategory(@Query("key") key: String): Observable<HttpResp<CategoryInfo>>
+
+    @Headers("url_name:mobApi")
+    @GET("v1/cook/menu/search?")
+    fun getCateData(@Query("key") key: String
+                    , @Query("cid") cid: String
+                    , @Query("page") page: Int
+                    , @Query("size") size: Int): Observable<HttpResp<CateDetailListInfo>>
 }

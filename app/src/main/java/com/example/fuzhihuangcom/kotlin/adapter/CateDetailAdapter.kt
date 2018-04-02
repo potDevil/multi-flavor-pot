@@ -8,9 +8,9 @@ import com.example.fuzhihuangcom.kotlin.service.bean.cate.CategoryInfo
 /**
  * Created by fzh on 2018/1/23.
  */
-class CateDetailAdapter : BaseQuickAdapter<CategoryInfo.ResultBean.ChildsBeanX.ChildsBean, BaseViewHolder>(R.layout.item_cate_detail) {
+class CateDetailAdapter : BaseQuickAdapter<CategoryInfo.ChildsBeanX.ChildsBean, BaseViewHolder>(R.layout.item_cate_detail) {
 
-    override fun convert(helper: BaseViewHolder, item: CategoryInfo.ResultBean.ChildsBeanX.ChildsBean) {
+    override fun convert(helper: BaseViewHolder, item: CategoryInfo.ChildsBeanX.ChildsBean) {
         helper.setText(R.id.tv_cate_detail, item.categoryInfo.name)
     }
 }

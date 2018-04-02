@@ -1,9 +1,12 @@
 package com.example.fuzhihuangcom.kotlin.service.manager
 
+import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.CATE_KEY
 import com.example.fuzhihuangcom.kotlin.service.RetrofitHelper
 import com.example.fuzhihuangcom.kotlin.service.RetrofitService
 import com.example.fuzhihuangcom.kotlin.service.bean.BaiduGirlInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.Book
+import com.example.fuzhihuangcom.kotlin.service.bean.HttpResp
+import com.example.fuzhihuangcom.kotlin.service.bean.cate.CateDetailListInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.cate.CategoryInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.ChinaCityInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.LocationInfo
@@ -53,7 +56,11 @@ class DataManager {
         return retrofitService.getPicture()
     }
 
-    fun getCateCategory(): Observable<CategoryInfo> {
-        return retrofitService.getCateCategory()
+    fun getCateCategory(): Observable<HttpResp<CategoryInfo>> {
+        return retrofitService.getCateCategory(CATE_KEY)
+    }
+
+    fun getCateData(cid: String, page: Int, size: Int): Observable<HttpResp<CateDetailListInfo>> {
+        return retrofitService.getCateData(CATE_KEY, cid, page, size)
     }
 }

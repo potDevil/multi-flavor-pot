@@ -3,7 +3,7 @@
     package="com.example.fuzhihuangcom.kotlin">
 
     <!--网络访问-->
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <!--地理访问-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -24,16 +24,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--主页-->
         <activity
             android:name="com.example.fuzhihuangcom.kotlin.activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+        <!--大图显示页-->
         <activity
             android:name="com.example.fuzhihuangcom.kotlin.activity.ImageActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+        <!--城市选择页-->
         <activity
             android:name="com.example.fuzhihuangcom.kotlin.activity.ChoiceCityActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!--美食列表页-->
+        <activity
+            android:name="com.example.fuzhihuangcom.kotlin.activity.CateListActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
     </application>

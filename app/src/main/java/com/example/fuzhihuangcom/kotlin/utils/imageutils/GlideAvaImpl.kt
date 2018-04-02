@@ -23,6 +23,7 @@ class GlideAvaImpl : GlideAva {
         this.mContext = content
         mOptions = RequestOptions()
                 .centerCrop()
+//                .skipMemoryCache(false)     // 禁止缓存
                 .placeholder(placeholderResId)
                 .error(errorResId)
                 .priority(Priority.HIGH)
@@ -34,9 +35,9 @@ class GlideAvaImpl : GlideAva {
 
     override fun loadCircleImage(url: String?, imageView: ImageView?) {
         if (mCircleOptions == null) {
-            var bitmapTransformationConfig: BitmapTransformationConfig = BitmapTransformationConfig()
+            val bitmapTransformationConfig: BitmapTransformationConfig = BitmapTransformationConfig()
                     .setBorderShape(BitmapTransformationConfig.BorderShape.CIRCLE_SHAPE)
-            var simpleBitmapTransform: SimpleBitmapTransform = SimpleBitmapTransform(bitmapTransformationConfig)
+            val simpleBitmapTransform = SimpleBitmapTransform(bitmapTransformationConfig)
             mCircleOptions = RequestOptions()
                     .centerCrop()
                     .placeholder(placeholderResId)
@@ -44,15 +45,15 @@ class GlideAvaImpl : GlideAva {
                     .priority(Priority.HIGH)
                     .transform(simpleBitmapTransform)
         }
-        Glide.with(mContext).load(url).apply(mCircleOptions!!).into(imageView)
+        mCircleOptions?.let { it -> Glide.with(mContext).load(url).apply(it).into(imageView) }
     }
 
     override fun loadRoundRectImage(radian: Int, url: String?, imageView: ImageView?) {
-        if(mRoundRectOptions == null) {
-            var bitmapTransformationConfig: BitmapTransformationConfig = BitmapTransformationConfig()
+        if (mRoundRectOptions == null) {
+            val bitmapTransformationConfig: BitmapTransformationConfig = BitmapTransformationConfig()
                     .setBorderShape(BitmapTransformationConfig.BorderShape.VERTIVAL_ROUND_SHAPE)
                     .setRoundCorner(radian)
-            var simpleBitmapTransform: SimpleBitmapTransform = SimpleBitmapTransform(bitmapTransformationConfig)
+            val simpleBitmapTransform = SimpleBitmapTransform(bitmapTransformationConfig)
             mRoundRectOptions = RequestOptions()
                     .centerCrop()
                     .placeholder(placeholderResId)
@@ -60,6 +61,6 @@ class GlideAvaImpl : GlideAva {
                     .priority(Priority.HIGH)
                     .transform(simpleBitmapTransform)
         }
-        Glide.with(mContext).load(url).apply(mRoundRectOptions!!).into(imageView)
+        Glide.with(mContext).load(url).apply(mRoundRectOptions).into(imageView)
     }
 }

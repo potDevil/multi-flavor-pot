@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import com.example.fuzhihuangcom.kotlin.R
 import com.example.fuzhihuangcom.kotlin.activity.ImageActivity
 import com.example.fuzhihuangcom.kotlin.adapter.GirlAdapter
+import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_NO_CONTENT
+import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_TIP
 import com.example.fuzhihuangcom.kotlin.service.bean.BaiduGirlInfo
 import com.example.fuzhihuangcom.kotlin.service.presenter.GirlPresenter
 import com.example.fuzhihuangcom.kotlin.service.view.GirlView
@@ -20,27 +22,27 @@ import kotlinx.android.synthetic.main.fragment_girl.*
 class GirlFragment : BaseLazyFragment() {
 
     var num = 0
-    private var mGirlInfoList: MutableList<BaiduGirlInfo.DataBean> = ArrayList()
+    private var girlInfoList: MutableList<BaiduGirlInfo.DataBean> = ArrayList()
     private lateinit var girlAdapter: GirlAdapter
 
-    private lateinit var mGirlPresenter: GirlPresenter
-    private var mGirlView: GirlView = object : GirlView {
+    private lateinit var girlPresenter: GirlPresenter
+    private var girlView: GirlView = object : GirlView {
         override fun onSuccess(girlInfo: BaiduGirlInfo) {
             refreshLayout.finishRefresh()               // 结束刷新
-            mGirlInfoList = girlInfo.data as MutableList<BaiduGirlInfo.DataBean>
-            if (mGirlInfoList.size == 11) {
-                mGirlInfoList.removeAt(10)
+            girlInfoList = girlInfo.data as MutableList<BaiduGirlInfo.DataBean>
+            if (girlInfoList.size == 11) {
+                girlInfoList.removeAt(10)
             }
             if (num == 0 && TextUtils.isEmpty(girlInfo.toString())) {
-                showToast("暂无内容")
+                showToast(ERROR_NO_CONTENT)
             } else {
                 if (num == 0) {
-                    girlAdapter.setNewData(mGirlInfoList)
+                    girlAdapter.setNewData(girlInfoList)
                 } else {
-                    girlAdapter.addData(mGirlInfoList)
+                    girlAdapter.addData(girlInfoList)
                 }
             }
-            if (mGirlInfoList.size > 0 && mGirlInfoList.size == 10) {
+            if (girlInfoList.size > 0 && girlInfoList.size == 10) {
                 girlAdapter.loadMoreComplete()
             } else {
                 girlAdapter.loadMoreEnd()
@@ -50,7 +52,7 @@ class GirlFragment : BaseLazyFragment() {
 
         override fun onError(result: String) {
             refreshLayout.finishRefresh(false)  // 结束刷新（刷新失败）
-            showToast("网络故障~亲！")
+            showToast(ERROR_TIP)
         }
     }
 
@@ -63,24 +65,23 @@ class GirlFragment : BaseLazyFragment() {
     }
 
     private fun bindRequest() {
-        mGirlPresenter = GirlPresenter(context)
-        mGirlPresenter.onCreate()
-        mGirlPresenter.attachView(mGirlView)
+        girlPresenter = GirlPresenter(context)
+        girlPresenter.onCreate()
+        girlPresenter.attachView(girlView)
     }
 
     private fun initView() {
         recyclerview.layoutManager = GridLayoutManager(context, 2)
-        girlAdapter = GirlAdapter(mGirlInfoList)
+        girlAdapter = GirlAdapter()
         recyclerview.adapter = girlAdapter
         // 上拉加载
         girlAdapter.setOnLoadMoreListener({
             if (girlAdapter.data.size > 0) {
-                mGirlPresenter.getGirlInfo(num * 10)
-                num++
+                girlPresenter.getGirlInfo(num * 10)
             }
         }, recyclerview)
         // 下拉刷新
-        refreshLayout.setOnRefreshListener { mGirlPresenter.getGirlInfo(0) }
+        refreshLayout.setOnRefreshListener { girlPresenter.getGirlInfo(0) }
         // adapter条目点击
         girlAdapter.setOnItemClickListener { adapter, _, position ->
             val data: BaiduGirlInfo.DataBean = adapter.data[position] as BaiduGirlInfo.DataBean
@@ -90,11 +91,11 @@ class GirlFragment : BaseLazyFragment() {
     }
 
     override fun lazyLoadData() {
-        mGirlPresenter.getGirlInfo(num * 10)
+        girlPresenter.getGirlInfo(num * 10)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mGirlPresenter.onStop()
+        girlPresenter.onStop()
     }
 }

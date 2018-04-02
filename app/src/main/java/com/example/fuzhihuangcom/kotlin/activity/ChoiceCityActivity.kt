@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.example.fuzhihuangcom.kotlin.R
 import com.example.fuzhihuangcom.kotlin.adapter.ChoiceCityAdapter
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.COUNTY_ID
+import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_TIP
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.ChinaCityInfo
 import com.example.fuzhihuangcom.kotlin.service.presenter.ChoiceCityPresenter
 import com.example.fuzhihuangcom.kotlin.service.view.ChoiceCityView
@@ -52,15 +53,16 @@ class ChoiceCityActivity : BaseActivity() {
 
     private var titleText: TitleView? = null
     private var adapter: ChoiceCityAdapter? = null
-    private var mProvinceInfos: List<ChinaCityInfo> = ArrayList()
-    private var mCityInfos: List<ChinaCityInfo> = ArrayList()
+    private var provinceInfos: List<ChinaCityInfo> = ArrayList()
+    private var cityInfos: List<ChinaCityInfo> = ArrayList()
 
     private lateinit var choiceCityPresenter: ChoiceCityPresenter
-    private var mChoiceCityView: ChoiceCityView = object : ChoiceCityView {
+
+    private var choiceCityView = object : ChoiceCityView {
         override fun onProvinceSuccess(cityInfos: List<ChinaCityInfo>?) {
             titleText?.setTextTitle("省份")
-            (mProvinceInfos as MutableList).clear()
-            cityInfos?.let { (mProvinceInfos as MutableList).addAll(it) }
+            (provinceInfos as MutableList).clear()
+            cityInfos?.let { (provinceInfos as MutableList).addAll(it) }
             currentLevel = LEVEL_PROVINCE
             onLoadSuccess(cityInfos)
         }
@@ -71,8 +73,8 @@ class ChoiceCityActivity : BaseActivity() {
 
         override fun onCitySuccess(cityInfos: List<ChinaCityInfo>?) {
             titleText?.setTextTitle("市区")
-            (mCityInfos as MutableList).clear()
-            cityInfos?.let { (mCityInfos as MutableList).addAll(it) }
+            (this@ChoiceCityActivity.cityInfos as MutableList).clear()
+            cityInfos?.let { (this@ChoiceCityActivity.cityInfos as MutableList).addAll(it) }
             currentLevel = LEVEL_CITY
             onLoadSuccess(cityInfos)
         }
@@ -99,7 +101,7 @@ class ChoiceCityActivity : BaseActivity() {
 
     private fun onLoadError() {
         refreshLayout.finishRefresh(false)  // 结束刷新（刷新失败）
-        showToast("网络故障~亲！")
+        showToast(ERROR_TIP)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -123,7 +125,7 @@ class ChoiceCityActivity : BaseActivity() {
     private fun bindRequest() {
         choiceCityPresenter = ChoiceCityPresenter(this)
         choiceCityPresenter.onCreate()
-        choiceCityPresenter.attachView(mChoiceCityView)
+        choiceCityPresenter.attachView(choiceCityView)
     }
 
     private fun getCityInfo() {
@@ -135,7 +137,7 @@ class ChoiceCityActivity : BaseActivity() {
     }
 
     private fun initRecycleView() {
-        adapter = ChoiceCityAdapter(mCityInfos as MutableList<ChinaCityInfo>)
+        adapter = ChoiceCityAdapter()
         rv_choice_city.layoutManager = LinearLayoutManager(this)
         rv_choice_city.adapter = adapter
     }
@@ -175,12 +177,12 @@ class ChoiceCityActivity : BaseActivity() {
             LEVEL_PROVINCE ->
                 finish()
             LEVEL_CITY -> {
-                adapter?.setNewData(mProvinceInfos)
+                adapter?.setNewData(provinceInfos)
                 currentLevel = LEVEL_PROVINCE
                 titleText?.setTextTitle("省份")
             }
             LEVEL_COUNTY -> {
-                adapter?.setNewData(mCityInfos)
+                adapter?.setNewData(cityInfos)
                 currentLevel = LEVEL_CITY
                 titleText?.setTextTitle("市区")
             }

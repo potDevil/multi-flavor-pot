@@ -9,7 +9,7 @@ import com.example.fuzhihuangcom.kotlin.utils.imageutils.GlideAvaUtil
 /**
  * Created by fzh on 2018/1/23.
  */
-class GirlAdapter(data: MutableList<BaiduGirlInfo.DataBean>?) : BaseQuickAdapter<BaiduGirlInfo.DataBean, BaseViewHolder>(R.layout.item_gril) {
+class GirlAdapter : BaseQuickAdapter<BaiduGirlInfo.DataBean, BaseViewHolder>(R.layout.item_gril) {
 
     override fun convert(helper: BaseViewHolder, item: BaiduGirlInfo.DataBean) {
         GlideAvaUtil.initGlide(mContext)

@@ -19,7 +19,7 @@ class ImageActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
-        var iv_activity : ImageView = findViewById(R.id.iv_activity)
+        val iv_activity : ImageView = findViewById(R.id.iv_activity)
         url = intent.getStringExtra(IMAGE_URL)
         GlideAvaUtil.loadImage(url, iv_activity)
         iv_activity.setOnClickListener {
@@ -29,7 +29,7 @@ class ImageActivity : BaseActivity() {
 
     companion object {
         fun start(context: Context, url: String) {
-            var intent = Intent(context, ImageActivity::class.java)
+            val intent = Intent(context, ImageActivity::class.java)
             intent.putExtra(IMAGE_URL, url)
             context.startActivity(intent)
         }
