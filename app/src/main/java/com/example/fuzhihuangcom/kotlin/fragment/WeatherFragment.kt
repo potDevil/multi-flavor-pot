@@ -17,9 +17,12 @@ import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.CITY_NAME
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.COLD
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.COMFORT
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.COUNTY_ID
+import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_SHOW_HISTORY_TIP
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_TIP
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.NO_DATA
+import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.PICTURE_INFO
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.SPORT
+import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.WEATHER_INFO
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.WeatherInfo
 import com.example.fuzhihuangcom.kotlin.service.presenter.WeatherPresenter
 import com.example.fuzhihuangcom.kotlin.service.view.WeatherView
@@ -41,6 +44,7 @@ class WeatherFragment : BaseLazyFragment(), View.OnClickListener {
 
     private var cityStr: String? = null
     private var heWeatherInfo: WeatherInfo.HeWeatherBean? = null
+    private var pictureUrl: String? = null
     private var aqiDialog: AqiDialog? = null
     private var apiNum: String? = null
     private var pmNum: String? = null
@@ -51,18 +55,28 @@ class WeatherFragment : BaseLazyFragment(), View.OnClickListener {
         override fun onLoadWeatherSuccess(w: WeatherInfo?) {
             weatherPresenter.getPicture()
             heWeatherInfo = w?.HeWeather?.get(0)
+            Hawk.put(WEATHER_INFO, w)
             setData()
         }
 
         override fun onLoadWeatherError(error: String) {
             refreshLayout.finishRefresh(false)
-            showToast(ERROR_TIP)
+            if (Hawk.get<WeatherInfo>(WEATHER_INFO) != null && Hawk.get<String>(PICTURE_INFO) != null) {
+                heWeatherInfo = Hawk.get<WeatherInfo>(WEATHER_INFO)?.HeWeather?.get(0)
+                pictureUrl = Hawk.get<String>(PICTURE_INFO)
+                setData()
+                showPicture()
+                showToast(ERROR_SHOW_HISTORY_TIP)
+            } else {
+                showToast(ERROR_TIP)
+            }
         }
 
         override fun onLoadPictureSuccess(r: ResponseBody?) {
             refreshLayout.finishRefresh()
-            GlideAvaUtil.initGlide(context)
-            GlideAvaUtil.loadImage(r?.string(), iv_bg)
+            pictureUrl = r?.string()
+            Hawk.put(PICTURE_INFO, pictureUrl)
+            showPicture()
         }
 
         override fun onLoadPictureError(error: String) {
@@ -72,7 +86,7 @@ class WeatherFragment : BaseLazyFragment(), View.OnClickListener {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        View.inflate(context, R.layout.fragment_weather, null)
+            View.inflate(context, R.layout.fragment_weather, null)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -166,6 +180,11 @@ class WeatherFragment : BaseLazyFragment(), View.OnClickListener {
             cold_text.text = COLD + heWeatherInfo?.suggestion?.flu?.txt
         }
         forecast_layout?.visibility = View.VISIBLE
+    }
+
+    private fun showPicture() {
+        GlideAvaUtil.initGlide(context)
+        GlideAvaUtil.loadImage(pictureUrl, iv_bg)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

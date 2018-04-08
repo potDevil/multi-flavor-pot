@@ -22,6 +22,8 @@ import kotlinx.android.synthetic.main.fragment_cate.*
 /**
  * Created by fzh on 2018/1/22.
  */
+
+//TODO 后期需要增加的两个功能 1、search cate 2、save cate
 class CateFragment : BaseLazyFragment() {
 
     private lateinit var cateCategoryPresent: CateCategoryPresenter

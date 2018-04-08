@@ -28,10 +28,6 @@ class DataManager {
         return retrofitService.getSearchBook(name, tag, start, count)
     }
 
-    fun getGirlInfo(num: Int): Observable<BaiduGirlInfo> {
-        return retrofitService.getGirlData(num, 10, "美女", "全部", "utf8")
-    }
-
     fun getLocationInfo(location: String?): Observable<LocationInfo> {
         return retrofitService.getLocation(location, "json")
     }
@@ -62,5 +58,9 @@ class DataManager {
 
     fun getCateData(cid: String, page: Int, size: Int): Observable<HttpResp<CateDetailListInfo>> {
         return retrofitService.getCateData(CATE_KEY, cid, page, size)
+    }
+
+    fun getGirlInfo(num: Int): Observable<BaiduGirlInfo> {
+        return retrofitService.getGirlData(num, 10, "美女", "全部", "utf8")
     }
 }

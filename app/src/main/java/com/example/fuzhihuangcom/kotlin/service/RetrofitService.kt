@@ -21,7 +21,7 @@ import rx.Observable
 
 interface RetrofitService {
     /**
-     * 网络请求测试接口
+     * 网络请求(测试接口)
      */
     @Headers("url_name:douban")
     @GET("v2/book/search")
@@ -29,19 +29,6 @@ interface RetrofitService {
                       , @Query("tag") tag: String?
                       , @Query("start") start: Int
                       , @Query("count") count: Int): Observable<Book>
-
-    /**
-     * 图片查询(girl界面)
-     * 图片所有数据
-     * pn=开始条数&rn=显示数量
-     */
-    @Headers("url_name:image")
-    @GET("channel/listjson?")
-    fun getGirlData(@Query("pn") pn: Int
-                    , @Query("rn") rn: Int
-                    , @Query("tag1") tag1: String?
-                    , @Query("tag2") tag2: String?
-                    , @Query("ie") ie: String): Observable<BaiduGirlInfo>
 
     /**
      * 百度定位(暂未用到)
@@ -55,7 +42,6 @@ interface RetrofitService {
                     , @Query("output") output: String?): Observable<LocationInfo>
 
     /**
-     * https://api.seniverse.com/v3/weather/now.json?key=szhmo4t8rzbqxztq&location=beijing&language=zh-Hans&unit=c 心知天气api
      * 郭霖API(weather界面)
      * http://guolin.tech/api/weather?cityid=" + weatherId + "&key=bc0418b57b2d4918819d3974ac1285d9 天气api
      * http://guolin.tech/api/bing_pic"每日一图
@@ -100,4 +86,17 @@ interface RetrofitService {
                     , @Query("cid") cid: String
                     , @Query("page") page: Int
                     , @Query("size") size: Int): Observable<HttpResp<CateDetailListInfo>>
+
+    /**
+     * 图片查询(girl界面)
+     * 图片所有数据
+     * pn=开始条数&rn=显示数量
+     */
+    @Headers("url_name:image")
+    @GET("channel/listjson?")
+    fun getGirlData(@Query("pn") pn: Int
+                    , @Query("rn") rn: Int
+                    , @Query("tag1") tag1: String?
+                    , @Query("tag2") tag2: String?
+                    , @Query("ie") ie: String): Observable<BaiduGirlInfo>
 }

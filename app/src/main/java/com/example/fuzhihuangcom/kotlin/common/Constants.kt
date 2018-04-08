@@ -5,11 +5,14 @@ package com.example.fuzhihuangcom.kotlin.common
  */
 interface Constants {
     companion object {
-        val ERROR_TIP = "网络故障~亲！"
+        val ERROR_SHOW_HISTORY_TIP = "亲！网络故障,我们将为您提供历史记录~"
+        val ERROR_TIP = "亲！网络故障~"
         val ERROR_NO_CONTENT = "暂无内容"
         val ERROR_ON_PICTURE = "暂无图片~"
         val PICTURE_URL = "http://pic.58pic.com/58pic/13/90/47/84F58PICKNh_1024.jpg"
 
+        val WEATHER_INFO = "WEATHER_INFO"
+        val PICTURE_INFO = "PICTURE_URL"
         val IMAGE_URL = "IMAGE_URL"
         val COMFORT = "舒适度："
         val CAR_WASH = "洗车指数："
