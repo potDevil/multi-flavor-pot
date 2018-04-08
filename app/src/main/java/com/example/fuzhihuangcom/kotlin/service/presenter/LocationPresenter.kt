@@ -23,7 +23,7 @@ class LocationPresenter : BasePresenter {
         locationView = view as LocationView
     }
 
-    fun getLocationInfo(location: String) {
+    fun getLocationInfo(location: String?) {
         mCompositeSubscription.add(mManager.getLocationInfo(location)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

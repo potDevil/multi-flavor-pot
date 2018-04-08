@@ -1,12 +1,13 @@
 package com.example.fuzhihuangcom.kotlin.service.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by fzh on 2018/1/24.
  */
 @SuppressWarnings("all")
-public class BaiduGirlInfo {
+public class BaiduGirlInfo implements Serializable {
     private String tag1;
     private String tag2;
     private int totalNum;

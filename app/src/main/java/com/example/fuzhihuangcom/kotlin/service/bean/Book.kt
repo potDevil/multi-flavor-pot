@@ -1,10 +1,12 @@
 package com.example.fuzhihuangcom.kotlin.service.bean
 
+import java.io.Serializable
+
 /**
  * Created by fuzhihuang on 2017/10/10.
  */
 
-class Book {
+class Book : Serializable {
 
     /**
      * count : 1

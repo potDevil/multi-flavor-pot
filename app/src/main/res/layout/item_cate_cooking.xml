@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_method_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="25dp"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        tools:text="传说中无敌好吃的甜点" />
+
+    <View
+        android:id="@+id/tv_white"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <ImageView
+        android:id="@+id/iv_method_icon"
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="25dp" />
+</LinearLayout>
+
+

@@ -52,10 +52,10 @@ class WeatherFragmentDeprecated : BaseLazyFragment() {
     }
 
     private fun bindRequest() {
-        mLocationPresenter!!.onCreate()
-        mLocationPresenter!!.attachView(mLocationView)
+        mLocationPresenter.onCreate()
+        mLocationPresenter.attachView(mLocationView)
         if (!TextUtils.isEmpty(locationStr))
-            mLocationPresenter!!.getLocationInfo(locationStr!!)
+            mLocationPresenter.getLocationInfo(locationStr!!)
     }
 
     @SuppressLint("MissingPermission")
@@ -107,12 +107,12 @@ class WeatherFragmentDeprecated : BaseLazyFragment() {
             // 如果地理位置发生变化,重新显示
             showLocation()
             if (!TextUtils.isEmpty(locationStr))
-                mLocationPresenter!!.getLocationInfo(locationStr!!)
+                mLocationPresenter.getLocationInfo(locationStr)
         }
     }
 
     private fun setFloatingButton() {
-        floatingButton.setOnClickListener { v->
+        floatingButton.setOnClickListener { _ ->
             ChoiceCityActivity.start(context)
         }
     }

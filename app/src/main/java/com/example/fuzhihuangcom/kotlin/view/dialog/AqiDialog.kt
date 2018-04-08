@@ -2,6 +2,8 @@ package com.example.fuzhihuangcom.kotlin.view.dialog
 
 import android.app.Dialog
 import android.content.Context
+import android.support.v4.content.ContextCompat
+import android.text.TextUtils
 import android.view.View
 import android.view.Window
 import android.widget.TextView
@@ -54,6 +56,7 @@ class AqiDialog(private val mContext: Context) : Dialog(mContext) {
     }
 
     fun setApiTextColor(apiNum: String) {
+        if (TextUtils.isEmpty(apiNum)) return
         when {
             apiNum.toInt() in 0..50 -> settTvColor(tv_aqi1, tv_aqi2, tv_aqi3, tv_aqi4, tv_aqi5, tv_aqi5)
             apiNum.toInt() in 51..100 -> settTvColor(tv_aqi2, tv_aqi1, tv_aqi3, tv_aqi4, tv_aqi5, tv_aqi5)
@@ -64,6 +67,7 @@ class AqiDialog(private val mContext: Context) : Dialog(mContext) {
     }
 
     fun setPmTextColor(pmNum: String) {
+        if (TextUtils.isEmpty(pmNum)) return
         when {
             pmNum.toInt() in 0..35 -> settTvColor(tv_pm1, tv_pm2, tv_pm3, tv_pm4, tv_pm5, tv_pm6)
             pmNum.toInt() in 36..75 -> settTvColor(tv_pm2, tv_pm1, tv_pm3, tv_pm4, tv_pm5, tv_pm6)
@@ -75,11 +79,11 @@ class AqiDialog(private val mContext: Context) : Dialog(mContext) {
     }
 
     private fun settTvColor(tv1: TextView?, tv2: TextView?, tv3: TextView?, tv4: TextView?, tv5: TextView?, tv6: TextView?) {
-        tv1?.setTextColor(mContext.resources.getColor(R.color.refresh_blue))
-        tv2?.setTextColor(mContext.resources.getColor(R.color.black))
-        tv3?.setTextColor(mContext.resources.getColor(R.color.black))
-        tv4?.setTextColor(mContext.resources.getColor(R.color.black))
-        tv5?.setTextColor(mContext.resources.getColor(R.color.black))
-        tv6?.setTextColor(mContext.resources.getColor(R.color.black))
+        tv1?.setTextColor(ContextCompat.getColor(context, R.color.refresh_blue))
+        tv2?.setTextColor(ContextCompat.getColor(context, R.color.black))
+        tv3?.setTextColor(ContextCompat.getColor(context, R.color.black))
+        tv4?.setTextColor(ContextCompat.getColor(context, R.color.black))
+        tv5?.setTextColor(ContextCompat.getColor(context, R.color.black))
+        tv6?.setTextColor(ContextCompat.getColor(context, R.color.black))
     }
 }

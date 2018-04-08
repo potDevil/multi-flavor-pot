@@ -1,12 +1,13 @@
 package com.example.fuzhihuangcom.kotlin.service.bean.weather;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by fzh on 2018/1/25.
  */
 
-public class LocationInfo {
+public class LocationInfo implements Serializable {
 
     /**
      * status : 0

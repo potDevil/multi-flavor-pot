@@ -23,5 +23,6 @@ interface Constants {
         val CATE_KEY = "24ea856856364"
         val CID = "cid"
         val TITLE = "TITLE"
+        val CATE_DETAIL = "CATE_DETAIL"
     }
 }

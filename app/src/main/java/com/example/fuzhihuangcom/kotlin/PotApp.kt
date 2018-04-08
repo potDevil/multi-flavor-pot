@@ -10,7 +10,7 @@ import android.app.Application
 class PotApp : Application() {
     companion object {
         private var instance: Application? = null
-        fun instance () = instance!!
+        fun instance() = instance!!
     }
 
     override fun onCreate() {

@@ -133,7 +133,7 @@ class ChoiceCityActivity : BaseActivity() {
     }
 
     private fun initView() {
-        titleText = findViewById(R.id.title)
+        titleText = findViewById(R.id.title) as TitleView
     }
 
     private fun initRecycleView() {

@@ -33,7 +33,7 @@ class BookPresenter : BasePresenter {
                     }
 
                     override fun onCompleted() {
-                        mBookView!!.onSuccess(mBook!!)
+                        mBookView.onSuccess(mBook)
                     }
 
                     override fun onNext(t: Book) {

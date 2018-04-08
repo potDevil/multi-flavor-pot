@@ -4,12 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.text.TextUtils
 import com.example.fuzhihuangcom.kotlin.R
 import com.example.fuzhihuangcom.kotlin.adapter.CateListAdapter
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.CID
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_NO_CONTENT
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_ON_PICTURE
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_TIP
 import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.TITLE
 import com.example.fuzhihuangcom.kotlin.service.bean.cate.CateDetailListInfo
@@ -88,8 +86,8 @@ class CateListActivity : BaseActivity() {
     }
 
     private fun initView() {
-        titleText = findViewById(R.id.title)
-        titleText?.setTitleBg(R.color.cate_background)
+        titleText = findViewById(R.id.title) as TitleView
+        titleText?.setTitleBg(R.color.refresh_blue)
         titleText?.setTextTitle(title)
     }
 
@@ -100,12 +98,7 @@ class CateListActivity : BaseActivity() {
 
         cateListAdapter?.setOnItemClickListener { adapter, _, position ->
             val data = adapter.getItem(position) as CateDetailListInfo.ListBean
-            if (!TextUtils.isEmpty(data.recipe.img)) {
-                val url: String = data.recipe.img
-                ImageActivity.start(this, url)
-            } else {
-                showToast(ERROR_ON_PICTURE)
-            }
+            CateDetailActivity.start(this, data)
         }
 
         refreshLayout.setOnRefreshListener { refreshView() }

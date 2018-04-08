@@ -1,10 +1,12 @@
 package com.example.fuzhihuangcom.kotlin.service.bean.weather
 
+import java.io.Serializable
+
 /**
  * Created by fzh on 2018/1/30.
  */
 
-class ChinaCityInfo {
+class ChinaCityInfo : Serializable {
 
     /**
      * id : 1

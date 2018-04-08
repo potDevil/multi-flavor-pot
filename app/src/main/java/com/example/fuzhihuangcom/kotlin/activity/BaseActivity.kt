@@ -2,7 +2,7 @@ package com.example.fuzhihuangcom.kotlin.activity
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v4.app.FragmentActivity
+import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.widget.Toast
 
@@ -10,7 +10,7 @@ import android.widget.Toast
  * Created by fuzhihuang on 2017/9/14.
  */
 
-open class BaseActivity : FragmentActivity() {
+open class BaseActivity : AppCompatActivity() {
     // lateinit property mToast has not been initialized 懒加载还未被初始化
     private var mToast: Toast? = null
 

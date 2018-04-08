@@ -19,7 +19,7 @@ class ImageActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
-        val iv_activity : ImageView = findViewById(R.id.iv_activity)
+        val iv_activity = findViewById(R.id.iv_activity) as ImageView
         url = intent.getStringExtra(IMAGE_URL)
         GlideAvaUtil.loadImage(url, iv_activity)
         iv_activity.setOnClickListener {
