@@ -8,11 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- <style name="Theme.AppStartLoad" parent="android:Theme">
-        <item name="android:windowBackground">@drawable/icon_su8</item>
-        <item name="android:windowNoTitle">true</item>
-    </style> -->
-
     <!--toolsbar颜色和食物名称-->
     <style name="textToolbarTitle">
         <item name="android:textSize">16sp</item>
