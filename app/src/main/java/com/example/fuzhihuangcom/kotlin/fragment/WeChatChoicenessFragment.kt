@@ -31,7 +31,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorT
 /**
  * Created by fzh on 2018/4/8.
  */
-
+// TODO 添加一个菜单管理频道
 class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListener {
 
     private lateinit var weChatCategoryPresenter: WeChatCategoryPresenter
