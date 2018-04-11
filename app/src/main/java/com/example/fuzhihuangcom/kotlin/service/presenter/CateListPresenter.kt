@@ -17,7 +17,7 @@ class CateListPresenter : BasePresenter {
     private lateinit var cateListView: CateListView
 
     constructor(context: Context) {
-        mContext = context
+        this.context = context
     }
 
     override fun attachView(view: View) {
@@ -26,7 +26,7 @@ class CateListPresenter : BasePresenter {
     }
 
     fun getCateListInfo(cid: String, page: Int, size: Int) {
-        mCompositeSubscription.add(mManager.getCateData(cid, page, size)
+        compositeSubscription.add(manager.getCateData(cid, page, size)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<HttpResp<CateDetailListInfo>>() {

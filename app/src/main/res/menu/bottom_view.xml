@@ -16,10 +16,10 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_girl"
+        android:id="@+id/menu_wechat"
         android:enabled="true"
-        android:icon="@drawable/icon_girl"
-        android:title="girl"
+        android:icon="@drawable/icon_wechat"
+        android:title="wechat"
         app:showAsAction="ifRoom" />
 
     <item

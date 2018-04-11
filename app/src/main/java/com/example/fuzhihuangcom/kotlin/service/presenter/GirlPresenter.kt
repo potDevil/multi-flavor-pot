@@ -16,7 +16,7 @@ class GirlPresenter : BasePresenter {
 //    private lateinit var mGirlInfo: GirlInfo
 
     constructor(context: Context) {
-        mContext = context
+        this.context = context
     }
 
     override fun attachView(view: View) {
@@ -24,7 +24,7 @@ class GirlPresenter : BasePresenter {
     }
 
     fun getGirlInfo(num: Int) {
-        mCompositeSubscription.add(mManager.getGirlInfo(num)
+        compositeSubscription.add(manager.getGirlInfo(num)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<BaiduGirlInfo>() {

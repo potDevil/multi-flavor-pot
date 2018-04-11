@@ -13,6 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk{abiFilters "armeabi"}
     }
     buildTypes {
         release {
@@ -64,4 +65,6 @@ dependencies {
     implementation 'com.orhanobut:hawk:2.0.1'
     // gif图
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
+    // 兼容ViewPager 指示器框架
+    compile 'com.github.hackware1993:MagicIndicator:1.5.0'
 }

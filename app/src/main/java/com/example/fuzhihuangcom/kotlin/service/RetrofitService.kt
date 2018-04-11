@@ -2,12 +2,15 @@ package com.example.fuzhihuangcom.kotlin.service
 
 import com.example.fuzhihuangcom.kotlin.service.bean.BaiduGirlInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.Book
+import com.example.fuzhihuangcom.kotlin.service.bean.HttpListResp
 import com.example.fuzhihuangcom.kotlin.service.bean.HttpResp
 import com.example.fuzhihuangcom.kotlin.service.bean.cate.CateDetailListInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.cate.CategoryInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.ChinaCityInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.LocationInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.WeatherInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.wechat.WeChatCategoryInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.wechat.WeChatListInfo
 import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -86,6 +89,22 @@ interface RetrofitService {
                     , @Query("cid") cid: String
                     , @Query("page") page: Int
                     , @Query("size") size: Int): Observable<HttpResp<CateDetailListInfo>>
+
+    /**
+     * 微信精选API
+     * http://apicloud.mob.com/wx/article/category/query?key=24ea856856364                          微信精选分类查询
+     * http://apicloud.mob.com/wx/article/search?key=24ea856856364&cid=1&page=1&size=20             微信精选列表查询
+     */
+    @Headers("url_name:mobApi")
+    @GET("wx/article/category/query?")
+    fun getWeChatCategory(@Query("key") key: String): Observable<HttpListResp<WeChatCategoryInfo>>
+
+    @Headers("url_name:mobApi")
+    @GET("wx/article/search?")
+    fun getWeChatList(@Query("key") key: String
+                      , @Query("cid") cid: String
+                      , @Query("page") page: Int
+                      , @Query("size") size: Int): Observable<HttpResp<WeChatListInfo>>
 
     /**
      * 图片查询(girl界面)

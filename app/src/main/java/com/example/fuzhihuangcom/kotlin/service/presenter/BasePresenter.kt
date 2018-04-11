@@ -10,21 +10,21 @@ import rx.subscriptions.CompositeSubscription
  * Created by fzh on 2018/1/22.
  */
 abstract class BasePresenter : Presenter {
-    protected lateinit var mContext: Context
-    protected lateinit var mManager: DataManager
-    protected lateinit var mCompositeSubscription: CompositeSubscription
+    protected lateinit var context: Context
+    protected lateinit var manager: DataManager
+    protected lateinit var compositeSubscription: CompositeSubscription
 
     override fun onCreate() {
-        mManager = DataManager()
-        mCompositeSubscription = CompositeSubscription()
+        manager = DataManager()
+        compositeSubscription = CompositeSubscription()
     }
 
     override fun onStart() {
     }
 
     override fun onStop() {
-        if (mCompositeSubscription.hasSubscriptions()) {
-            mCompositeSubscription.unsubscribe()
+        if (compositeSubscription.hasSubscriptions()) {
+            compositeSubscription.unsubscribe()
         }
     }
 

@@ -16,7 +16,7 @@ class ChoiceCityPresenter : BasePresenter {
     private lateinit var choiceCityView: ChoiceCityView
 
     constructor(context: Context) {
-        mContext = context
+        this.context = context
     }
 
     override fun attachView(view: View) {
@@ -25,7 +25,7 @@ class ChoiceCityPresenter : BasePresenter {
     }
 
     fun getProvincesInfo() {
-        mCompositeSubscription.add(mManager.getProvinceInfo()
+        compositeSubscription.add(manager.getProvinceInfo()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<List<ChinaCityInfo>>() {
@@ -44,7 +44,7 @@ class ChoiceCityPresenter : BasePresenter {
     }
 
     fun getCityInfo(provinceNum: Int) {
-        mCompositeSubscription.add(mManager.getCityInfo(provinceNum)
+        compositeSubscription.add(manager.getCityInfo(provinceNum)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<List<ChinaCityInfo>>() {
@@ -64,7 +64,7 @@ class ChoiceCityPresenter : BasePresenter {
     }
 
     fun getCountyInfo(provinceNum: Int, cityNum: Int) {
-        mCompositeSubscription.add(mManager.getCountyInfo(provinceNum, cityNum)
+        compositeSubscription.add(manager.getCountyInfo(provinceNum, cityNum)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<List<ChinaCityInfo>>() {

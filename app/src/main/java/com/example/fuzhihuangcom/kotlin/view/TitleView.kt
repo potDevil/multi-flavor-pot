@@ -23,8 +23,8 @@ class TitleView : LinearLayout {
     private var tv_title: TextView? = null
     private var toolbar_choice_city: RelativeLayout? = null
 
-    constructor(context: Context) : this(context, null) {}
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0) {}
+    constructor(context: Context) : this(context, null)
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         mContext = context
         val view = View.inflate(context, R.layout.title_view, this)

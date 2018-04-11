@@ -27,5 +27,10 @@ interface Constants {
         val CID = "cid"
         val TITLE = "TITLE"
         val CATE_DETAIL = "CATE_DETAIL"
+
+        val WECHAT_CATEGORY_INFO = "WECHAT_CATEGORY_INFO"
+        val WECHAT_CID = "WECHAT_CID"
+        val WEBVIEW_TITLE = "WEBVIEW_TITLE"
+        val WEBVIEW_URL = "WECHAT_URL"
     }
 }

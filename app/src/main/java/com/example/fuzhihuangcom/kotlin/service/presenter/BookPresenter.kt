@@ -16,7 +16,7 @@ class BookPresenter : BasePresenter {
     private lateinit var mBook: Book
 
     constructor(context: Context) {
-        mContext = context
+        this.context = context
     }
 
     override fun attachView(view: View) {
@@ -24,7 +24,7 @@ class BookPresenter : BasePresenter {
     }
 
     fun getSearchBooks(name: String, tag: String, start: Int, count: Int) {
-        mCompositeSubscription.add(mManager.getSearchBooks(name, tag, start, count)
+        compositeSubscription.add(manager.getSearchBooks(name, tag, start, count)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<Book>() {

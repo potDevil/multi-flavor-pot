@@ -15,7 +15,7 @@ class LocationPresenter : BasePresenter {
     lateinit var locationView: LocationView
 
     constructor(context: Context) {
-        mContext = context
+        this.context = context
     }
 // http://api.map.baidu.com/geocoder/v2/?ak=xB2GDLWY76rq7GlwUmTtCmn6rlQwvQnh&location=31.696117,121.958458&output=json&pois=1
     override fun attachView(view: View) {
@@ -24,7 +24,7 @@ class LocationPresenter : BasePresenter {
     }
 
     fun getLocationInfo(location: String?) {
-        mCompositeSubscription.add(mManager.getLocationInfo(location)
+        compositeSubscription.add(manager.getLocationInfo(location)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<LocationInfo>() {

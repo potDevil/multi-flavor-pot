@@ -16,7 +16,7 @@ class WeatherPresenter : BasePresenter {
     lateinit var weatherView: WeatherView
 
     constructor(context: Context) {
-        mContext = context
+        this.context = context
     }
 
     override fun attachView(view: View) {
@@ -25,7 +25,7 @@ class WeatherPresenter : BasePresenter {
     }
 
     fun getWeatherInfo(weatherId: String?) {
-        mCompositeSubscription.add(mManager.getWeatherInfo(weatherId)
+        compositeSubscription.add(manager.getWeatherInfo(weatherId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<WeatherInfo>() {
@@ -45,7 +45,7 @@ class WeatherPresenter : BasePresenter {
     }
 
     fun getPicture() {
-        mCompositeSubscription.add(mManager.getPictureUrl()
+        compositeSubscription.add(manager.getPictureUrl()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<ResponseBody>() {

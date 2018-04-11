@@ -84,8 +84,8 @@ class GirlFragment : BaseLazyFragment() {
         refreshLayout.setOnRefreshListener { girlPresenter.getGirlInfo(0) }
         // adapter条目点击
         girlAdapter.setOnItemClickListener { adapter, _, position ->
-            val data: BaiduGirlInfo.DataBean = adapter.data[position] as BaiduGirlInfo.DataBean
-            val url: String = data.image_url
+            val data = adapter.data[position] as BaiduGirlInfo.DataBean
+            val url = data.image_url
             ImageActivity.start(context, url)
         }
     }

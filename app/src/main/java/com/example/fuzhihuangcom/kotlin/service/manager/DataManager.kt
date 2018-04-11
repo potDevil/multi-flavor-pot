@@ -5,12 +5,15 @@ import com.example.fuzhihuangcom.kotlin.service.RetrofitHelper
 import com.example.fuzhihuangcom.kotlin.service.RetrofitService
 import com.example.fuzhihuangcom.kotlin.service.bean.BaiduGirlInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.Book
+import com.example.fuzhihuangcom.kotlin.service.bean.HttpListResp
 import com.example.fuzhihuangcom.kotlin.service.bean.HttpResp
 import com.example.fuzhihuangcom.kotlin.service.bean.cate.CateDetailListInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.cate.CategoryInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.ChinaCityInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.LocationInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.WeatherInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.wechat.WeChatCategoryInfo
+import com.example.fuzhihuangcom.kotlin.service.bean.wechat.WeChatListInfo
 import okhttp3.ResponseBody
 import rx.Observable
 
@@ -58,6 +61,14 @@ class DataManager {
 
     fun getCateData(cid: String, page: Int, size: Int): Observable<HttpResp<CateDetailListInfo>> {
         return retrofitService.getCateData(CATE_KEY, cid, page, size)
+    }
+
+    fun getWeChatCategory(): Observable<HttpListResp<WeChatCategoryInfo>> {
+        return retrofitService.getWeChatCategory(CATE_KEY)
+    }
+
+    fun getWeChatList(cid: String, page: Int, size: Int): Observable<HttpResp<WeChatListInfo>> {
+        return retrofitService.getWeChatList(CATE_KEY, cid, page, size)
     }
 
     fun getGirlInfo(num: Int): Observable<BaiduGirlInfo> {

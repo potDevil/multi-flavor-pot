@@ -17,7 +17,7 @@ class CateCategoryPresenter : BasePresenter {
     private lateinit var cateCategoryView: CateCategoryView
 
     constructor(context: Context) {
-        mContext = context
+        this.context = context
     }
 
     override fun attachView(view: View) {
@@ -26,7 +26,7 @@ class CateCategoryPresenter : BasePresenter {
     }
 
     fun getCateCategory() {
-        mCompositeSubscription.add(mManager.getCateCategory()
+        compositeSubscription.add(manager.getCateCategory()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<HttpResp<CategoryInfo>>() {
