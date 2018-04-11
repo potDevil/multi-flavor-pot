@@ -123,7 +123,7 @@ object BitmapUtils {
      * @return
      */
     fun shapeCrop(pool: BitmapPool, source: Bitmap?, config: BitmapTransformationConfig): Bitmap? {
-        var source: Bitmap? = source ?: return null
+        var source = source ?: return null
         if (config.getBorderShape() === BitmapTransformationConfig.BorderShape.VERTIVAL_ROUND_SHAPE) {
             var width = source!!.width.toFloat()
             val height = source.height.toFloat()

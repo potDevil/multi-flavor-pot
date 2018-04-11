@@ -73,6 +73,7 @@ interface RetrofitService {
     fun getPicture(): Observable<ResponseBody>
 
     /**
+     * http://api.mob.com/#/ 免费接口提供
      * 美食API(cate界面)
      * apikey = 24ea856856364
      * http://apicloud.mob.com/v1/cook/category/query?key=24ea856856364                             菜谱分类标签查询

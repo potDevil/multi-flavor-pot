@@ -14,7 +14,7 @@ import com.example.fuzhihuangcom.kotlin.utils.imageutils.GlideAvaUtil
 class CateListAdapter : BaseQuickAdapter<CateDetailListInfo.ListBean, BaseViewHolder>(R.layout.item_cate_list) {
     override fun convert(helper: BaseViewHolder, item: CateDetailListInfo.ListBean) {
         GlideAvaUtil.initGlide(mContext)
-        if (!TextUtils.isEmpty(item.thumbnail))
+        if (!TextUtils.isEmpty(item.recipe.img))
             GlideAvaUtil.loadImage(item.recipe.img, helper.getView(R.id.iv_food_icon))
         else
             GlideAvaUtil.loadImage(PICTURE_URL, helper.getView(R.id.iv_food_icon))

@@ -51,7 +51,7 @@ class CateDetailActivity : BaseActivity() {
 
     private fun initView() {
         GlideAvaUtil.initGlide(this)
-        if (!TextUtils.isEmpty(data?.thumbnail))
+        if (!TextUtils.isEmpty(data?.recipe?.img))
             GlideAvaUtil.loadImage(data?.recipe?.img, iv_cate_detail)
         else
             GlideAvaUtil.loadImage(PICTURE_URL, iv_cate_detail)

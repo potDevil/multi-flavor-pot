@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk{abiFilters "armeabi"}
+        ndk{abiFilters "armeabi"}       // http://x5.tencent.com/tbs/guide/sdkInit.html 腾讯X5Web接入指南
     }
     buildTypes {
         release {

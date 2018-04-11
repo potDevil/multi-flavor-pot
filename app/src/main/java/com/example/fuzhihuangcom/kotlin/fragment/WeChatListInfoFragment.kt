@@ -15,6 +15,7 @@ import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.WECHAT_CID
 import com.example.fuzhihuangcom.kotlin.service.bean.wechat.WeChatListInfo
 import com.example.fuzhihuangcom.kotlin.service.presenter.WeChatListPresenter
 import com.example.fuzhihuangcom.kotlin.service.view.WeChatListView
+import kotlinx.android.synthetic.main.activity_choice_city.*
 
 /**
  * Created by fzh on 2018/4/9.
@@ -24,11 +25,13 @@ class WeChatListInfoFragment : BaseLazyFragment() {
     private lateinit var weChatListPresenter: WeChatListPresenter
     private var rv_wechat_info: RecyclerView? = null
     private var weChatListInfoAdapter: WeChatListInfoAdapter? = null
-    private var page: Int = 1
-    private var size: Int = 20
+    private var cid = ""
+    private var page = 1
+    private var size = 20
 
     private var weChatListView = object : WeChatListView {
         override fun onLoadWeChatListSuccess(t: List<WeChatListInfo.ListBean>?) {
+            refreshLayout.finishRefresh()
             if (page == 1 && t?.size == 0) {
                 showToast(ERROR_NO_CONTENT)
             } else {
@@ -47,6 +50,7 @@ class WeChatListInfoFragment : BaseLazyFragment() {
         }
 
         override fun onLoadWeChatListError(s: String?) {
+            refreshLayout.finishRefresh(false)
             showToast(ERROR_TIP)
         }
 
@@ -60,6 +64,7 @@ class WeChatListInfoFragment : BaseLazyFragment() {
         page = 1
         bindRequest()
         initView(view)
+        refreshView()
     }
 
     private fun bindRequest() {
@@ -73,7 +78,7 @@ class WeChatListInfoFragment : BaseLazyFragment() {
         rv_wechat_info = view?.findViewById(R.id.rv_wechat_info)
         rv_wechat_info?.layoutManager = LinearLayoutManager(context)
         rv_wechat_info?.adapter = weChatListInfoAdapter
-        val cid = arguments.get(WECHAT_CID) as String
+        cid = arguments.get(WECHAT_CID) as String
         weChatListPresenter.getWeChatList(cid, page, size)
 
         weChatListInfoAdapter?.setOnLoadMoreListener({
@@ -88,6 +93,10 @@ class WeChatListInfoFragment : BaseLazyFragment() {
             val url = data.sourceUrl
             X5WebViewActivity.start(context, title, url)
         }
+    }
+
+    private fun refreshView() {
+        refreshLayout.setOnRefreshListener { weChatListPresenter.getWeChatList(cid, 1, size) }
     }
 
     override fun lazyLoadData() {
