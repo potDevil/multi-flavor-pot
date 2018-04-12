@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import com.example.fuzhihuangcom.kotlin.R
 import com.example.fuzhihuangcom.kotlin.activity.X5WebViewActivity
 import com.example.fuzhihuangcom.kotlin.adapter.WeChatListInfoAdapter
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_NO_CONTENT
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_TIP
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.WECHAT_CID
+import com.example.fuzhihuangcom.kotlin.common.ERROR_NO_CONTENT
+import com.example.fuzhihuangcom.kotlin.common.ERROR_TIP
+import com.example.fuzhihuangcom.kotlin.common.WECHAT_CID
 import com.example.fuzhihuangcom.kotlin.service.bean.wechat.WeChatListInfo
 import com.example.fuzhihuangcom.kotlin.service.presenter.WeChatListPresenter
 import com.example.fuzhihuangcom.kotlin.service.view.WeChatListView

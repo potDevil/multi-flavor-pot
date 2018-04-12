@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import com.example.fuzhihuangcom.kotlin.R
 import com.example.fuzhihuangcom.kotlin.activity.ImageActivity
 import com.example.fuzhihuangcom.kotlin.adapter.GirlAdapter
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_NO_CONTENT
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_TIP
+import com.example.fuzhihuangcom.kotlin.common.ERROR_NO_CONTENT
+import com.example.fuzhihuangcom.kotlin.common.ERROR_TIP
 import com.example.fuzhihuangcom.kotlin.service.bean.BaiduGirlInfo
 import com.example.fuzhihuangcom.kotlin.service.presenter.GirlPresenter
 import com.example.fuzhihuangcom.kotlin.service.view.GirlView

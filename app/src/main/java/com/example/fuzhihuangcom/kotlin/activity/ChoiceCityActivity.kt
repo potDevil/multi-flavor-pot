@@ -7,8 +7,8 @@ import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import com.example.fuzhihuangcom.kotlin.R
 import com.example.fuzhihuangcom.kotlin.adapter.ChoiceCityAdapter
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.COUNTY_ID
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_TIP
+import com.example.fuzhihuangcom.kotlin.common.COUNTY_ID
+import com.example.fuzhihuangcom.kotlin.common.ERROR_TIP
 import com.example.fuzhihuangcom.kotlin.service.bean.weather.ChinaCityInfo
 import com.example.fuzhihuangcom.kotlin.service.presenter.ChoiceCityPresenter
 import com.example.fuzhihuangcom.kotlin.service.view.ChoiceCityView

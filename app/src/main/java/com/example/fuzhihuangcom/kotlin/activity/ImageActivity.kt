@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import com.example.fuzhihuangcom.kotlin.R
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.IMAGE_URL
+import com.example.fuzhihuangcom.kotlin.common.IMAGE_URL
 import com.example.fuzhihuangcom.kotlin.utils.imageutils.GlideAvaUtil
 
 /**

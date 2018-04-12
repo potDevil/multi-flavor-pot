@@ -9,8 +9,8 @@ import android.view.View
 import android.widget.TextView
 import com.example.fuzhihuangcom.kotlin.R
 import com.example.fuzhihuangcom.kotlin.adapter.CateCookingAdapter
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.CATE_DETAIL
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.PICTURE_URL
+import com.example.fuzhihuangcom.kotlin.common.CATE_DETAIL
+import com.example.fuzhihuangcom.kotlin.common.PICTURE_URL
 import com.example.fuzhihuangcom.kotlin.service.bean.cate.CateDetailListInfo
 import com.example.fuzhihuangcom.kotlin.service.bean.cate.CateRecipeMethod
 import com.example.fuzhihuangcom.kotlin.utils.imageutils.GlideAvaUtil

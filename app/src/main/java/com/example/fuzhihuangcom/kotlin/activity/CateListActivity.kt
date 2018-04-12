@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.example.fuzhihuangcom.kotlin.R
 import com.example.fuzhihuangcom.kotlin.adapter.CateListAdapter
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.CID
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_NO_CONTENT
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_TIP
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.TITLE
+import com.example.fuzhihuangcom.kotlin.common.CID
+import com.example.fuzhihuangcom.kotlin.common.ERROR_NO_CONTENT
+import com.example.fuzhihuangcom.kotlin.common.ERROR_TIP
+import com.example.fuzhihuangcom.kotlin.common.TITLE
 import com.example.fuzhihuangcom.kotlin.service.bean.cate.CateDetailListInfo
 import com.example.fuzhihuangcom.kotlin.service.presenter.CateListPresenter
 import com.example.fuzhihuangcom.kotlin.service.view.CateListView

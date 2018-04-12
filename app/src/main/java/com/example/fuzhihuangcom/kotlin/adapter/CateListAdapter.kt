@@ -4,7 +4,7 @@ import android.text.TextUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.example.fuzhihuangcom.kotlin.R
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.PICTURE_URL
+import com.example.fuzhihuangcom.kotlin.common.PICTURE_URL
 import com.example.fuzhihuangcom.kotlin.service.bean.cate.CateDetailListInfo
 import com.example.fuzhihuangcom.kotlin.utils.imageutils.GlideAvaUtil
 

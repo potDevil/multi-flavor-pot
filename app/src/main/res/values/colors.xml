@@ -13,6 +13,7 @@
     <color name="text_dark_grey">#999999</color>
     <color name="wechat_green">#7eb64e</color>
     <color name="tint_yellow">#ffff00</color>
+    <color name="blue_indicator">#111f78</color>
 
     <color name="cate_background">#f8e565</color>
     <color name="transparent">#00000000</color>

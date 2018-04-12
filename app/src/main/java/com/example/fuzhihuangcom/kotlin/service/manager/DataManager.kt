@@ -1,6 +1,6 @@
 package com.example.fuzhihuangcom.kotlin.service.manager
 
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.CATE_KEY
+import com.example.fuzhihuangcom.kotlin.common.CATE_KEY
 import com.example.fuzhihuangcom.kotlin.service.RetrofitHelper
 import com.example.fuzhihuangcom.kotlin.service.RetrofitService
 import com.example.fuzhihuangcom.kotlin.service.bean.BaiduGirlInfo

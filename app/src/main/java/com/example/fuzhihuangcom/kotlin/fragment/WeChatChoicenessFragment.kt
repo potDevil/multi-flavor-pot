@@ -8,10 +8,11 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.example.fuzhihuangcom.kotlin.R
 import com.example.fuzhihuangcom.kotlin.adapter.WeChatPageAdapter
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_TIP
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.WECHAT_CATEGORY_INFO
+import com.example.fuzhihuangcom.kotlin.common.ERROR_TIP
+import com.example.fuzhihuangcom.kotlin.common.WECHAT_CATEGORY_INFO
 import com.example.fuzhihuangcom.kotlin.service.bean.wechat.WeChatCategoryInfo
 import com.example.fuzhihuangcom.kotlin.service.presenter.WeChatCategoryPresenter
 import com.example.fuzhihuangcom.kotlin.service.view.WeChatCategoryView
@@ -32,9 +33,10 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorT
  * Created by fzh on 2018/4/8.
  */
 // TODO 添加一个菜单管理频道
-class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListener {
+class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListener, View.OnClickListener {
 
     private lateinit var weChatCategoryPresenter: WeChatCategoryPresenter
+    private var iv_add: ImageView? = null
     private var magicIndicator: MagicIndicator? = null
     private var commonNavigator: CommonNavigator? = null
     private var titleDataList: ArrayList<WeChatCategoryInfo> = ArrayList()
@@ -48,6 +50,14 @@ class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListe
 
         override fun onLoadWeChatDataError(s: String?) {
             showToast(ERROR_TIP)
+        }
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.iv_add -> {
+
+            }
         }
     }
 
@@ -112,6 +122,7 @@ class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListe
 
     private fun initView(view: View?) {
         magicIndicator = view?.findViewById(R.id.magic_indicator)
+        iv_add = view?.findViewById(R.id.iv_add)
         commonNavigator = CommonNavigator(context)
         commonNavigator?.adapter = object : CommonNavigatorAdapter() {
             override fun getCount(): Int {
@@ -121,7 +132,7 @@ class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListe
             override fun getTitleView(context: Context, index: Int): IPagerTitleView {
                 val colorTransitionPagerTitleView = ColorTransitionPagerTitleView(context)
                 colorTransitionPagerTitleView.normalColor = Color.WHITE
-                colorTransitionPagerTitleView.selectedColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
+                colorTransitionPagerTitleView.selectedColor = ContextCompat.getColor(context, R.color.blue_indicator)
                 colorTransitionPagerTitleView.textSize = AndroidUtils.dip2px(context, 5f).toFloat()
                 colorTransitionPagerTitleView.text = titleDataList[index].name
                 colorTransitionPagerTitleView.setOnClickListener { view_pager.currentItem = index }
@@ -130,7 +141,7 @@ class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListe
 
             override fun getIndicator(context: Context): IPagerIndicator {
                 val indicator = TriangularPagerIndicator(context)
-                indicator.lineColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
+                indicator.lineColor = ContextCompat.getColor(context, R.color.blue_indicator)
                 return indicator
             }
         }
@@ -139,6 +150,7 @@ class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListe
         weChatPageAdapter = WeChatPageAdapter(fragmentManager, titleDataList)
         view_pager.addOnPageChangeListener(this)
         view_pager.adapter = weChatPageAdapter
+        iv_add?.setOnClickListener(this)
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {

@@ -10,8 +10,8 @@ import com.example.fuzhihuangcom.kotlin.R
 import com.example.fuzhihuangcom.kotlin.activity.CateListActivity
 import com.example.fuzhihuangcom.kotlin.adapter.CateCategoryAdapter
 import com.example.fuzhihuangcom.kotlin.adapter.CateDetailAdapter
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.ERROR_TIP
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.PICTURE_URL
+import com.example.fuzhihuangcom.kotlin.common.ERROR_TIP
+import com.example.fuzhihuangcom.kotlin.common.PICTURE_URL
 import com.example.fuzhihuangcom.kotlin.service.bean.cate.CategoryInfo
 import com.example.fuzhihuangcom.kotlin.service.presenter.CateCategoryPresenter
 import com.example.fuzhihuangcom.kotlin.service.view.CateCategoryView

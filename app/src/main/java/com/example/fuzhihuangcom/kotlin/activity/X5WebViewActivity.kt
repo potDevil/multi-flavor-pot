@@ -6,8 +6,8 @@ import android.graphics.PixelFormat
 import android.os.Bundle
 import android.view.View
 import com.example.fuzhihuangcom.kotlin.R
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.WEBVIEW_TITLE
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.WEBVIEW_URL
+import com.example.fuzhihuangcom.kotlin.common.WEBVIEW_TITLE
+import com.example.fuzhihuangcom.kotlin.common.WEBVIEW_URL
 import com.example.fuzhihuangcom.kotlin.view.TitleView
 import com.example.fuzhihuangcom.kotlin.view.webview.ProgressWebView
 import com.tencent.smtt.sdk.WebChromeClient

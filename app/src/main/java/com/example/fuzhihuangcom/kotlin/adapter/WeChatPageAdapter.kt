@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.example.fuzhihuangcom.kotlin.common.Constants.Companion.WECHAT_CID
+import com.example.fuzhihuangcom.kotlin.common.WECHAT_CID
 import com.example.fuzhihuangcom.kotlin.fragment.WeChatListInfoFragment
 import com.example.fuzhihuangcom.kotlin.service.bean.wechat.WeChatCategoryInfo
 
