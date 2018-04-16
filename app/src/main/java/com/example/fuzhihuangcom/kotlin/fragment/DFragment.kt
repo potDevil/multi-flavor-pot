@@ -18,4 +18,10 @@ class DFragment : BaseLazyFragment() {
     override fun lazyLoadData() {
 
     }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        if (hidden) {
+
+        }
+    }
 }

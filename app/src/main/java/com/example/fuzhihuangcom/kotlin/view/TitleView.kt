@@ -18,13 +18,11 @@ import com.example.fuzhihuangcom.kotlin.R
  */
 class TitleView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private var mContext: Context? = null
     private var iv_exit: ImageView? = null
     private var tv_title: TextView? = null
     private var toolbar_choice_city: RelativeLayout? = null
 
     init {
-        mContext = context
         val view = View.inflate(context, R.layout.title_view, this)
         toolbar_choice_city = view.findViewById(R.id.toolbar_choice_city)
         iv_exit = view.findViewById(R.id.iv_exit)

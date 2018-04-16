@@ -1,6 +1,9 @@
 package com.example.fuzhihuangcom.kotlin.service.bean.wechat;
 
+import android.annotation.SuppressLint;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Created by fzh on 2018/4/9.
@@ -30,5 +33,21 @@ public class WeChatCategoryInfo implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final WeChatCategoryInfo other = (WeChatCategoryInfo) obj;
+        return Objects.equals(this.name, other.name);
     }
 }

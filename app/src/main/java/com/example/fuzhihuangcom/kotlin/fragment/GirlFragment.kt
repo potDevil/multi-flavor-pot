@@ -98,4 +98,10 @@ class GirlFragment : BaseLazyFragment() {
         super.onDestroy()
         girlPresenter.onStop()
     }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        if (hidden) {
+            girlPresenter.onStop()
+        }
+    }
 }

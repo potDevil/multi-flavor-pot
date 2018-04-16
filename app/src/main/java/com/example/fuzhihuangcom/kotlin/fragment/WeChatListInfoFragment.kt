@@ -102,4 +102,15 @@ class WeChatListInfoFragment : BaseLazyFragment() {
     override fun lazyLoadData() {
 
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        weChatListPresenter.onStop()
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        if (hidden) {
+            weChatListPresenter.onStop()
+        }
+    }
 }

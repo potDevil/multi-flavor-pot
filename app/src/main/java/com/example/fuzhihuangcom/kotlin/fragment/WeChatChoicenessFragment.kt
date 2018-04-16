@@ -1,6 +1,8 @@
 package com.example.fuzhihuangcom.kotlin.fragment
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -10,12 +12,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.fuzhihuangcom.kotlin.R
+import com.example.fuzhihuangcom.kotlin.activity.WeChatCategoryActivity
 import com.example.fuzhihuangcom.kotlin.adapter.WeChatPageAdapter
-import com.example.fuzhihuangcom.kotlin.common.ERROR_TIP
-import com.example.fuzhihuangcom.kotlin.common.WECHAT_CATEGORY_INFO
+import com.example.fuzhihuangcom.kotlin.common.USER_CATEGORY
+import com.example.fuzhihuangcom.kotlin.common.WECHAT_USER_INFO
 import com.example.fuzhihuangcom.kotlin.service.bean.wechat.WeChatCategoryInfo
-import com.example.fuzhihuangcom.kotlin.service.presenter.WeChatCategoryPresenter
-import com.example.fuzhihuangcom.kotlin.service.view.WeChatCategoryView
 import com.example.fuzhihuangcom.kotlin.utils.AndroidUtils
 import com.orhanobut.hawk.Hawk
 import kotlinx.android.synthetic.main.fragment_wechat_choiceness.*
@@ -32,32 +33,34 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorT
 /**
  * Created by fzh on 2018/4/8.
  */
-// TODO 添加一个菜单管理频道
 class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListener, View.OnClickListener {
 
-    private lateinit var weChatCategoryPresenter: WeChatCategoryPresenter
+    companion object {
+        const val REQUEST_WECHAT_ITEM = 1
+    }
+
     private var iv_add: ImageView? = null
     private var magicIndicator: MagicIndicator? = null
     private var commonNavigator: CommonNavigator? = null
-    private var titleDataList: ArrayList<WeChatCategoryInfo> = ArrayList()
     private var weChatPageAdapter: WeChatPageAdapter? = null
 
-    private var weChatCategoryView = object : WeChatCategoryView {
-        override fun onLoadWeChatDataSuccess(t: List<WeChatCategoryInfo>?) {
-
-            Hawk.put<List<WeChatCategoryInfo>>(WECHAT_CATEGORY_INFO, t)
-        }
-
-        override fun onLoadWeChatDataError(s: String?) {
-            showToast(ERROR_TIP)
-        }
-    }
+    private var userCategoryList = ArrayList<WeChatCategoryInfo>()
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.iv_add -> {
-
+                val intent = Intent(context, WeChatCategoryActivity().javaClass)
+                intent.putExtra(USER_CATEGORY, userCategoryList)
+                startActivityForResult(intent, REQUEST_WECHAT_ITEM)
             }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_WECHAT_ITEM && resultCode == Activity.RESULT_OK) {
+            initTitleItem()
+            initIndicator()
         }
     }
 
@@ -66,67 +69,64 @@ class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListe
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindRequest()
-        initTitleData()
+        initTitleItem()
         initView(view)
+        initIndicator()
     }
 
-    private fun bindRequest() {
-        weChatCategoryPresenter = WeChatCategoryPresenter(context)
-        weChatCategoryPresenter.onCreate()
-        weChatCategoryPresenter.attachView(weChatCategoryView)
-    }
-
-    private fun initTitleData() {
-        if (!Hawk.get<ArrayList<WeChatCategoryInfo>>(WECHAT_CATEGORY_INFO, ArrayList()).isEmpty()) {
-            val weChatCacheInfo = Hawk.get<ArrayList<WeChatCategoryInfo>>(WECHAT_CATEGORY_INFO, ArrayList())
-            (0 until weChatCacheInfo.size)
-                    .filter { it < 8 }
-                    .forEach { titleDataList.add(weChatCacheInfo[it]) }
+    private fun initTitleItem() {
+        if (!Hawk.get<ArrayList<WeChatCategoryInfo>>(WECHAT_USER_INFO, ArrayList()).isEmpty()) {
+            userCategoryList = Hawk.get<ArrayList<WeChatCategoryInfo>>(WECHAT_USER_INFO, ArrayList())
         } else {
             var weChatCategory: WeChatCategoryInfo?
             weChatCategory = WeChatCategoryInfo()
             weChatCategory.name = "时尚"
             weChatCategory.cid = "1"
-            titleDataList.add(weChatCategory)
+            userCategoryList.add(weChatCategory)
             weChatCategory = WeChatCategoryInfo()
             weChatCategory.name = "热点"
             weChatCategory.cid = "2"
-            titleDataList.add(weChatCategory)
+            userCategoryList.add(weChatCategory)
             weChatCategory = WeChatCategoryInfo()
             weChatCategory.name = "健康"
             weChatCategory.cid = "3"
-            titleDataList.add(weChatCategory)
+            userCategoryList.add(weChatCategory)
             weChatCategory = WeChatCategoryInfo()
             weChatCategory.name = "百科"
             weChatCategory.cid = "5"
-            titleDataList.add(weChatCategory)
+            userCategoryList.add(weChatCategory)
             weChatCategory = WeChatCategoryInfo()
             weChatCategory.name = "娱乐"
             weChatCategory.cid = "7"
-            titleDataList.add(weChatCategory)
+            userCategoryList.add(weChatCategory)
             weChatCategory = WeChatCategoryInfo()
             weChatCategory.name = "美文"
             weChatCategory.cid = "8"
-            titleDataList.add(weChatCategory)
+            userCategoryList.add(weChatCategory)
             weChatCategory = WeChatCategoryInfo()
             weChatCategory.name = "旅行"
             weChatCategory.cid = "9"
-            titleDataList.add(weChatCategory)
+            userCategoryList.add(weChatCategory)
             weChatCategory = WeChatCategoryInfo()
             weChatCategory.name = "媒体达人"
             weChatCategory.cid = "10"
-            titleDataList.add(weChatCategory)
+            userCategoryList.add(weChatCategory)
+
+            Hawk.put(WECHAT_USER_INFO, userCategoryList)
         }
     }
 
     private fun initView(view: View?) {
         magicIndicator = view?.findViewById(R.id.magic_indicator)
         iv_add = view?.findViewById(R.id.iv_add)
+        iv_add?.setOnClickListener(this)
+    }
+
+    private fun initIndicator() {
         commonNavigator = CommonNavigator(context)
         commonNavigator?.adapter = object : CommonNavigatorAdapter() {
             override fun getCount(): Int {
-                return titleDataList.size
+                return userCategoryList.size
             }
 
             override fun getTitleView(context: Context, index: Int): IPagerTitleView {
@@ -134,7 +134,7 @@ class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListe
                 colorTransitionPagerTitleView.normalColor = Color.WHITE
                 colorTransitionPagerTitleView.selectedColor = ContextCompat.getColor(context, R.color.blue_indicator)
                 colorTransitionPagerTitleView.textSize = AndroidUtils.dip2px(context, 5f).toFloat()
-                colorTransitionPagerTitleView.text = titleDataList[index].name
+                colorTransitionPagerTitleView.text = userCategoryList[index].name
                 colorTransitionPagerTitleView.setOnClickListener { view_pager.currentItem = index }
                 return colorTransitionPagerTitleView
             }
@@ -147,10 +147,9 @@ class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListe
         }
         magicIndicator?.navigator = commonNavigator
         ViewPagerHelper.bind(magicIndicator, view_pager)
-        weChatPageAdapter = WeChatPageAdapter(fragmentManager, titleDataList)
+        weChatPageAdapter = WeChatPageAdapter(fragmentManager, userCategoryList)
         view_pager.addOnPageChangeListener(this)
         view_pager.adapter = weChatPageAdapter
-        iv_add?.setOnClickListener(this)
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
@@ -166,11 +165,6 @@ class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListe
     }
 
     override fun lazyLoadData() {
-        weChatCategoryPresenter.getWeChatCategory()
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        weChatCategoryPresenter.onStop()
     }
 }

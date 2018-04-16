@@ -109,4 +109,9 @@ class CateListActivity : BaseActivity() {
             }
         }, rv_cate_list)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cateListPresenter.onStop()
+    }
 }
