@@ -123,10 +123,4 @@ class CateFragment : BaseLazyFragment() {
         super.onDestroy()
         cateCategoryPresent.onStop()
     }
-
-    override fun onHiddenChanged(hidden: Boolean) {
-        if (hidden) {
-            cateCategoryPresent.onStop()
-        }
-    }
 }

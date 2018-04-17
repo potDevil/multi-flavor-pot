@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_girl.*
 /**
  * Created by fzh on 2018/1/22.
  */
+@Deprecated("grilFragment")
 class GirlFragment : BaseLazyFragment() {
 
     var num = 0
@@ -97,11 +98,5 @@ class GirlFragment : BaseLazyFragment() {
     override fun onDestroy() {
         super.onDestroy()
         girlPresenter.onStop()
-    }
-
-    override fun onHiddenChanged(hidden: Boolean) {
-        if (hidden) {
-            girlPresenter.onStop()
-        }
     }
 }

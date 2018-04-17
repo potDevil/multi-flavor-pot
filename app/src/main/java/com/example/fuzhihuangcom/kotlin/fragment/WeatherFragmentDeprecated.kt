@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_weather.*
 /**
  * Created by fzh on 2018/1/22.
  */
-@Deprecated("All")
+@Deprecated("locationFragment")
 class WeatherFragmentDeprecated : BaseLazyFragment() {
 
     var locationManager: LocationManager? = null
@@ -63,7 +63,7 @@ class WeatherFragmentDeprecated : BaseLazyFragment() {
         // 获取地址位置管理器
         locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         // 获取所有可用的位置提供器
-        var providers: MutableList<String>? = locationManager!!.getProviders(true)
+        val providers: MutableList<String>? = locationManager!!.getProviders(true)
         if (providers!!.contains(LocationManager.GPS_PROVIDER)) {
             // 如果是GPS
             locationProvider = LocationManager.GPS_PROVIDER
