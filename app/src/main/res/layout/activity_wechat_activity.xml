@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.example.fuzhihuangcom.kotlin.view.TitleView
+    <com.kotlin.view.TitleView
         android:id="@+id/title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -52,7 +52,7 @@
                 android:id="@+id/dividing_line"
                 style="@style/subscribe_dividing_line" />
 
-            <com.example.fuzhihuangcom.kotlin.view.webview.DragGrid
+            <com.kotlin.view.webview.DragGrid
                 android:id="@+id/user_grid_view"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
                 android:text="更多频道"
                 android:textSize="13sp" />
 
-            <com.example.fuzhihuangcom.kotlin.view.webview.OtherGridView
+            <com.kotlin.view.webview.OtherGridView
                 android:id="@+id/other_grid_view"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

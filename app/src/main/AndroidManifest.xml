@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.fuzhihuangcom.kotlin">
+    package="com.kotlin">
 
     <!--网络访问-->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name="com.example.fuzhihuangcom.kotlin.activity.SplashActivity"
+            android:name="com.kotlin.activity.SplashActivity"
             android:screenOrientation="portrait">
             <!--android:theme="@style/Theme.AppStartLoad"-->
             <intent-filter>
@@ -33,39 +33,39 @@
         </activity>
         <!--主页-->
         <activity
-            android:name="com.example.fuzhihuangcom.kotlin.activity.MainActivity"
+            android:name="com.kotlin.activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <!--大图显示页-->
         <activity
-            android:name="com.example.fuzhihuangcom.kotlin.activity.ImageActivity"
+            android:name="com.kotlin.activity.ImageActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <!--城市选择页-->
         <activity
-            android:name="com.example.fuzhihuangcom.kotlin.activity.ChoiceCityActivity"
+            android:name="com.kotlin.activity.ChoiceCityActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <!--美食列表页-->
         <activity
-            android:name="com.example.fuzhihuangcom.kotlin.activity.CateListActivity"
+            android:name="com.kotlin.activity.CateListActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <!--美食详情页-->
         <activity
-            android:name="com.example.fuzhihuangcom.kotlin.activity.CateDetailActivity"
+            android:name="com.kotlin.activity.CateDetailActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <!--X5WebView-->
         <activity
-            android:name="com.example.fuzhihuangcom.kotlin.activity.X5WebViewActivity"
+            android:name="com.kotlin.activity.X5WebViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <!--菜单管理页-->
         <activity
-            android:name="com.example.fuzhihuangcom.kotlin.activity.WeChatCategoryActivity"
+            android:name="com.kotlin.activity.WeChatCategoryActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
     </application>
