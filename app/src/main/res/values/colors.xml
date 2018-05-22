@@ -16,6 +16,9 @@
     <color name="blue_indicator">#111f78</color>
     <color name="dividing_line">#ffcdcdcd</color>
     <color name="black_dark_text">#ff2e2e2e</color>
+    <color name="text_yellow_light">#dddd80</color>
+    <color name="lineColor">#60d3d3d3</color>
+    <color name="text_default">#6f6f6f</color>
 
     <color name="cate_background">#f8e565</color>
     <color name="transparent">#00000000</color>

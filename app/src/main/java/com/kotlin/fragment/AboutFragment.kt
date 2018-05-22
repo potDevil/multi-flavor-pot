@@ -9,10 +9,20 @@ import com.kotlin.R
 /**
  * Created by fzh on 2018/1/22.
  */
-class DFragment : BaseLazyFragment() {
+class AboutFragment : BaseLazyFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return View.inflate(context, R.layout.fragment_d, null)
+        return View.inflate(context, R.layout.fragment_about, null)
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+
+    }
+
+    private fun initView() {
+
     }
 
     override fun lazyLoadData() {

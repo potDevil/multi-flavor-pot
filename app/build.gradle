@@ -38,33 +38,33 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.2.4'
     // 网络请求
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-    compile 'io.reactivex:rxandroid:1.2.0'
-    compile 'com.squareup.okhttp3:okhttp:3.8.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    implementation 'io.reactivex:rxandroid:1.2.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.8.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     // 字符串转换器
-    compile 'com.squareup.retrofit2:converter-scalars:2.0.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.0.0'
     // design新特性
-    compile 'com.android.support:design:25.0.0'
+    implementation 'com.android.support:design:25.0.0'
     // cardview
-    compile 'com.android.support:cardview-v7:25.3.1'
+    implementation 'com.android.support:cardview-v7:25.3.1'
     // RecyclerView
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.33'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.33'
     // 图片加载
-    compile 'com.github.bumptech.glide:glide:4.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
     // 下拉刷新
-    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
-    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'//没有使用特殊Header，可以不加这行
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'//没有使用特殊Header，可以不加这行
     // 1.0.4 出现问题可以回退到 1.0.3
-    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
-    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'//没有使用特殊Header，可以不加这行
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'//没有使用特殊Header，可以不加这行
     // key value存取
     implementation 'com.orhanobut:hawk:2.0.1'
     // gif图
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
     // 兼容ViewPager 指示器框架
-    compile 'com.github.hackware1993:MagicIndicator:1.5.0'
+    implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
 }

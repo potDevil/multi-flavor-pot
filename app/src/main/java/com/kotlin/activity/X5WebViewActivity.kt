@@ -130,7 +130,7 @@ class X5WebViewActivity : BaseActivity() {
         web_view?.webViewClient = object : WebViewClient() {
 
             override fun shouldOverrideUrlLoading(webView: WebView?, s: String?): Boolean {
-                webView!!.loadUrl(s)
+                webView?.loadUrl(s)
                 return true
             }
 

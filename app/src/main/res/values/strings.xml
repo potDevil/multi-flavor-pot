@@ -6,4 +6,17 @@
     <string name="double_exit">再按一次退出</string>
 
     <string name="save_city">保存当前城市</string>
+
+    <string name="about_project">项目</string>
+    <string name="about_look_core">查看项目源码</string>
+    <string name="about_share_core">分享项目源码</string>
+    <string name="about_look_bo">查看个人博客</string>
+    <string name="about_share_app">分享APP</string>
+    <string name="about_github">感谢开源框架的支持</string>
+    <string name="about_open_source">
+        • RxJava: github.com/ReactiveX/RxJava
+        \n• RxAndroid: github.com/ReactiveX/RxAndroid
+        \n• Retrofit: github.com/square/retrofit
+        \n• Glide: github.com/bumptech/glide
+        \n• Mob API: http://api.mob.com/#/</string>
 </resources>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_marvel" />
+        <!--multi-flavor-pot-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_about"
+            android:orientation="vertical"
+            android:paddingBottom="32dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:paddingTop="32dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/icon_project"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:text="@string/about_project"
+                android:textColor="@color/text_yellow_light"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/lineColor" />
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:columnCount="2">
+
+                <Button
+                    android:id="@+id/btn_look_core"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawableLeft="@drawable/icon_core"
+                    android:drawablePadding="12dp"
+                    android:gravity="start|center_vertical"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp"
+                    android:text="@string/about_look_core"
+                    android:textColor="@color/text_default" />
+
+                <Button
+                    android:id="@+id/btn_share_core"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawableLeft="@drawable/icon_share_core"
+                    android:drawablePadding="12dp"
+                    android:gravity="start|center_vertical"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp"
+                    android:text="@string/about_share_core"
+                    android:textColor="@color/text_default" />
+
+                <Button
+                    android:id="@+id/btn_look_bo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawableLeft="@drawable/icon_boke"
+                    android:drawablePadding="12dp"
+                    android:gravity="start|center_vertical"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp"
+                    android:text="@string/about_look_bo"
+                    android:textColor="@color/text_default" />
+
+                <Button
+                    android:id="@+id/btn_share_app"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawableLeft="@drawable/icon_share_app"
+                    android:drawablePadding="12dp"
+                    android:gravity="start|center_vertical"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp"
+                    android:text="@string/about_share_app"
+                    android:textColor="@color/text_default" />
+            </GridLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/lineColor" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/icon_github"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:text="@string/about_github"
+                android:textColor="@color/text_yellow_light"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/lineColor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:lineSpacingExtra="6dp"
+                android:text="@string/about_open_source"
+                android:textColorLink="@color/text_default"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/lineColor" />
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

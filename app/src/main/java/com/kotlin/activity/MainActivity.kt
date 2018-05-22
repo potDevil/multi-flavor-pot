@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import com.kotlin.R
+import com.kotlin.fragment.AboutFragment
 import com.kotlin.fragment.CateFragment
-import com.kotlin.fragment.DFragment
 import com.kotlin.fragment.WeChatChoicenessFragment
 import com.kotlin.fragment.WeatherFragment
 import com.kotlin.utils.DoubleClickExit
@@ -18,7 +18,7 @@ class MainActivity : BaseActivity() {
     private lateinit var cateFragment: CateFragment
 //    private lateinit var girlFragment: GirlFragment
     private lateinit var weChatChoicenessFragment: WeChatChoicenessFragment
-    private lateinit var dFragment: DFragment
+    private lateinit var aboutFragment: AboutFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,18 +32,18 @@ class MainActivity : BaseActivity() {
         cateFragment = CateFragment()
 //        girlFragment = GirlFragment()
         weChatChoicenessFragment = WeChatChoicenessFragment()
-        dFragment = DFragment()
+        aboutFragment = AboutFragment()
         fragmentList.add(weatherFragment)
         fragmentList.add(cateFragment)
         fragmentList.add(weChatChoicenessFragment)
 //        fragmentList.add(girlFragment)
-        fragmentList.add(dFragment)
+        fragmentList.add(aboutFragment)
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.fl_container, weatherFragment)
                 .add(R.id.fl_container, cateFragment)
                 .add(R.id.fl_container, weChatChoicenessFragment)
 //                .add(R.id.fl_container, girlFragment)
-                .add(R.id.fl_container, dFragment)
+                .add(R.id.fl_container, aboutFragment)
                 .commitAllowingStateLoss()
         switchFragment(weatherFragment)
     }
@@ -66,7 +66,7 @@ class MainActivity : BaseActivity() {
                 R.id.menu_android -> switchFragment(weatherFragment)
                 R.id.menu_ios -> switchFragment(cateFragment)
                 R.id.menu_wechat -> switchFragment(weChatChoicenessFragment)
-                R.id.menu_about -> switchFragment(dFragment)
+                R.id.menu_about -> switchFragment(aboutFragment)
             }
             false
         }

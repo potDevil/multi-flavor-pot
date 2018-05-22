@@ -108,7 +108,7 @@ interface RetrofitService {
                       , @Query("size") size: Int): Observable<HttpResp<WeChatListInfo>>
 
     /**
-     * 图片查询(girl界面)
+     * 图片查询(girl界面未使用)
      * 图片所有数据
      * pn=开始条数&rn=显示数量
      */

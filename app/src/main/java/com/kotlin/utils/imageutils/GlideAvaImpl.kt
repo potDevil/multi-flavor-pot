@@ -16,8 +16,8 @@ class GlideAvaImpl : GlideAva {
     private val errorResId: Int = R.drawable.icon_white
     private val placeholderResId: Int = R.drawable.icon_white
     private lateinit var mOptions: RequestOptions
-    private lateinit var mRoundRectOptions: RequestOptions
     private var mCircleOptions: RequestOptions? = null
+    private var mRoundRectOptions: RequestOptions? = null
 
     override fun initGlide(content: Context) {
         this.mContext = content
@@ -61,6 +61,6 @@ class GlideAvaImpl : GlideAva {
                     .priority(Priority.HIGH)
                     .transform(simpleBitmapTransform)
         }
-        Glide.with(mContext).load(url).apply(mRoundRectOptions).into(imageView)
+        mRoundRectOptions?.let { Glide.with(mContext).load(url).apply(it).into(imageView) }
     }
 }
