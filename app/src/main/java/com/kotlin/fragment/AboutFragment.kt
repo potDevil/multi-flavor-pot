@@ -7,7 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.kotlin.R
+import com.kotlin.service.bean.OnceEvent
 import kotlinx.android.synthetic.main.fragment_about.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * Created by fzh on 2018/1/22.
@@ -32,6 +36,7 @@ class AboutFragment : BaseLazyFragment(), View.OnClickListener {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        EventBus.getDefault().register(this)        // EventBus测试
 
     }
 
@@ -57,6 +62,15 @@ class AboutFragment : BaseLazyFragment(), View.OnClickListener {
     override fun onHiddenChanged(hidden: Boolean) {
         if (hidden) {
 
+        }
+    }
+
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onOnceEvent(event: OnceEvent? = null) {
+        event?.let {
+            showToast("我已经被点击过了")
         }
     }
 }

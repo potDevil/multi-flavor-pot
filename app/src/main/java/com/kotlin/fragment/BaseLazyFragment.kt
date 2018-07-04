@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.widget.Toast
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by wentong.chen on 2017/11/7.
@@ -47,5 +48,10 @@ abstract class BaseLazyFragment : Fragment() {
         }
         mToast = Toast.makeText(context, s, Toast.LENGTH_SHORT)
         mToast?.show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 }

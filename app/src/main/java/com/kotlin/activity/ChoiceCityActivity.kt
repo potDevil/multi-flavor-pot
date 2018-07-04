@@ -9,11 +9,13 @@ import com.kotlin.R
 import com.kotlin.adapter.ChoiceCityAdapter
 import com.kotlin.common.COUNTY_ID
 import com.kotlin.common.ERROR_TIP
+import com.kotlin.service.bean.OnceEvent
 import com.kotlin.service.bean.weather.ChinaCityInfo
 import com.kotlin.service.presenter.ChoiceCityPresenter
 import com.kotlin.service.view.ChoiceCityView
 import com.kotlin.view.TitleView
 import kotlinx.android.synthetic.main.activity_choice_city.*
+import org.greenrobot.eventbus.EventBus
 
 
 /**
@@ -134,6 +136,9 @@ class ChoiceCityActivity : BaseActivity() {
 
     private fun initView() {
         titleText = findViewById(R.id.title) as TitleView
+        titleText?.setOnClickListener{
+            EventBus.getDefault().post(OnceEvent())
+        }
     }
 
     private fun initRecycleView() {

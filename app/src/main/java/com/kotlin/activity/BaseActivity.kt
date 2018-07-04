@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.widget.Toast
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by fuzhihuang on 2017/9/14.
@@ -40,4 +41,9 @@ open class BaseActivity : AppCompatActivity() {
     //        //按返回键返回桌面
     //        moveTaskToBack(true);
     //    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
 }

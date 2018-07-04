@@ -67,4 +67,5 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
     // 兼容ViewPager 指示器框架
     implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }
