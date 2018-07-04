@@ -39,8 +39,8 @@ object BitmapUtils {
     fun addMarkToBitmap(source: Bitmap, @DrawableRes drawable: Int, gravity: Int, margin: Int = 0): Bitmap {
         var source = source
         var margin = margin
-        margin = AndroidUtils.dip2px(PotApp.instance(), margin.toFloat())
-        val target = BitmapFactory.decodeResource(PotApp.instance().resources, drawable)
+        margin = AndroidUtils.dip2px(PotApp.instance, margin.toFloat())
+        val target = BitmapFactory.decodeResource(PotApp.instance.resources, drawable)
         //创建一个和原图同样大小的位图
         //        Bitmap newBitmap = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config.RGB_565);
         if (!source.isMutable) {

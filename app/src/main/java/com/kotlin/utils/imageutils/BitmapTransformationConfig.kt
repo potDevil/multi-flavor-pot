@@ -80,7 +80,7 @@ class BitmapTransformationConfig {
     }
 
     fun getBorderWidth(): Int {
-        return AndroidUtils.dip2px(PotApp.instance(), borderWidth.toFloat())
+        return AndroidUtils.dip2px(PotApp.instance, borderWidth.toFloat())
     }
 
     fun getBorderPaint(): Paint {

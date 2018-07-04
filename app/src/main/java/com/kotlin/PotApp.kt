@@ -10,8 +10,10 @@ import com.tencent.smtt.sdk.QbSdk
 @SuppressWarnings("all")
 class PotApp : Application() {
     companion object {
-        private var instance: Application? = null
-        fun instance() = instance!!
+//        private var instance: Application? = null
+//        fun instance() = instance!!
+        lateinit var instance: PotApp
+            private set
     }
 
     override fun onCreate() {
