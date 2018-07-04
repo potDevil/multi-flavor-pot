@@ -19,4 +19,8 @@
         \n• Retrofit: github.com/square/retrofit
         \n• Glide: github.com/bumptech/glide
         \n• Mob API: http://api.mob.com/#/</string>
+    <string name="about_html_git_location">https://github.com/potDevil/multi-flavor-pot</string>
+    <string name="about_html_look_blog">https://my.csdn.net/qq_37149313</string>
+    <string name="share_core_title">分享multi-flavor-pot源码</string>
+    <string name="share_core_content">multi-flavor-pot，是一款基于MVP + RxJava + retrofit2的，包括查询、搜索、分类、收藏菜谱功能的APP。您可以在https://github.com/PeOS-China/CookMan下载</string>
 </resources>

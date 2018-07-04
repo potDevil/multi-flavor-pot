@@ -50,7 +50,7 @@
                 android:columnCount="2">
 
                 <Button
-                    android:id="@+id/btn_look_core"
+                    android:id="@+id/btn_look_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
@@ -63,7 +63,7 @@
                     android:textColor="@color/text_default" />
 
                 <Button
-                    android:id="@+id/btn_share_core"
+                    android:id="@+id/btn_share_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
@@ -76,7 +76,7 @@
                     android:textColor="@color/text_default" />
 
                 <Button
-                    android:id="@+id/btn_look_bo"
+                    android:id="@+id/btn_look_blog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
