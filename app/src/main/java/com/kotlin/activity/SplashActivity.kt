@@ -51,7 +51,7 @@ class SplashActivity : BaseActivity() {
         if (!isTaskRoot) {
             val mainIntent: Intent = intent
             val action: String = mainIntent.action
-            if (mainIntent.hasCategory(Intent.CATEGORY_LAUNCHER) && action.equals(Intent.ACTION_MAIN)) {
+            if (mainIntent.hasCategory(Intent.CATEGORY_LAUNCHER) && action == Intent.ACTION_MAIN) {
                 finish()
                 return true
             }
