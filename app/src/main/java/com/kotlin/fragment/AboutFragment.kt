@@ -70,7 +70,7 @@ class AboutFragment : BaseLazyFragment(), View.OnClickListener {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onOnceEvent(event: OnceEvent? = null) {
         event?.let {
-            showToast("我已经被点击过了")
+//            showToast("我已经被点击过了")
         }
     }
 }

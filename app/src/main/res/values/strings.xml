@@ -12,13 +12,21 @@
     <string name="about_share_core">分享项目源码</string>
     <string name="about_look_bo">查看个人博客</string>
     <string name="about_share_app">分享APP</string>
-    <string name="about_github">感谢开源框架的支持</string>
+    <string name="about_github">感谢开源框架和各项接口的支持</string>
     <string name="about_open_source">
         • RxJava: github.com/ReactiveX/RxJava
         \n• RxAndroid: github.com/ReactiveX/RxAndroid
         \n• Retrofit: github.com/square/retrofit
         \n• Glide: github.com/bumptech/glide
-        \n• Mob API: http://api.mob.com/#/</string>
+        \n• MagicIndicator:
+        \n  github.com/hackware1993/MagicIndicator
+        \n• BaseRecyclerViewAdapterHelper:
+        \n  github.com/CymChad/BaseRecyclerViewAdapterHelper
+        \n• SmartRefreshLayout:
+        \n  github.com/scwang90/SmartRefreshLayout
+        \n• 美食API: api.mob.com/#/
+        \n• 天气API: guolin.tech/api/
+        \n• 微信精选API: apicloud.mob.com/wx/article/</string>
     <string name="about_html_git_location">https://github.com/potDevil/multi-flavor-pot</string>
     <string name="about_html_look_blog">https://my.csdn.net/qq_37149313</string>
     <string name="share_core_title">分享multi-flavor-pot源码</string>
