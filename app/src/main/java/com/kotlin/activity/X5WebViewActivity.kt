@@ -52,6 +52,8 @@ class X5WebViewActivity : BaseActivity() {
     private fun initView() {
         title_view = findViewById(R.id.title_view) as TitleView
         title_view?.setTextTitle(title)
+        title_view?.setTitleLength(8)
+        title_view?.setTitleLine(1)
     }
 
     private fun initWebView() {

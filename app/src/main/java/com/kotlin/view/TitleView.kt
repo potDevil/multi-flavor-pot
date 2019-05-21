@@ -52,4 +52,16 @@ class TitleView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
             toolbar_choice_city?.setBackgroundResource(color)
         }
     }
+
+    fun setTitleLength(length: Int) {
+        if (tv_title != null) {
+            tv_title?.maxEms = length
+        }
+    }
+
+    fun setTitleLine(lines: Int) {
+        if (tv_title != null)
+            tv_title?.maxLines = lines
+
+    }
 }

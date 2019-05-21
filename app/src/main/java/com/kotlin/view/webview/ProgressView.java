@@ -10,20 +10,21 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- *进度条
- *@author gubin
- *@author date: 2017/9/27
- *@author csdn:http://blog.csdn.net/eueheuen
+ * 进度条
  *
+ * @author gubin
+ * @author date: 2017/9/27
+ * @author csdn:http://blog.csdn.net/eueheuen
  */
 public class ProgressView extends View {
-    int defaultColor = 0xFF00A9EC;
+    private int defaultColor = 0xFF00A9EC;
 
-    Paint progressPaint = null;
-    Paint progressCircle = null;
-    int currentProgress = 0;
-    int totalProgress = 0;
-    boolean isHide = false;
+    private Paint progressPaint = null;
+    private Paint progressCircle = null;
+    private int currentProgress = 0;
+    private int totalProgress = 0;
+    private boolean isHide = false;
+
     public ProgressView(Context context) {
         this(context, null);
     }
@@ -46,8 +47,8 @@ public class ProgressView extends View {
         progressCircle.setMaskFilter(new BlurMaskFilter(10, BlurMaskFilter.Blur.SOLID));
     }
 
-    int viewWidth = 0;
-    int viewHeight = 0;
+    private int viewWidth = 0;
+    private int viewHeight = 0;
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -59,7 +60,7 @@ public class ProgressView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if(currentProgress<=100&&isHide){
+        if (currentProgress <= 100 && isHide) {
             isHide = false;
             this.setAlpha(1);
         }
@@ -76,7 +77,7 @@ public class ProgressView extends View {
             @Override
             public void run() {
                 ViewCompat.animate(ProgressView.this).alpha(0);
-                isHide=true;
+                isHide = true;
                 ProgressView.this.currentProgress = 0;
             }
         }, 100);
@@ -89,9 +90,17 @@ public class ProgressView extends View {
 
     public void setDefaultColor(int defaultColor) {
         this.defaultColor = defaultColor;
+        redraw();
+    }
+
+    private void redraw() {
+        progressPaint.setColor(getDefaultColor());
+        progressCircle.setColor(getDefaultColor());
+        invalidate();
     }
 
     ValueAnimator animator;
+
     public void setProgress(int progress) {
         totalProgress = progress;
         if (animator != null) {

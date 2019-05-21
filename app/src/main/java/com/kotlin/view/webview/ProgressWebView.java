@@ -1,6 +1,7 @@
 package com.kotlin.view.webview;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Message;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kotlin.R;
 import com.tencent.smtt.export.external.interfaces.ConsoleMessage;
 import com.tencent.smtt.export.external.interfaces.GeolocationPermissionsCallback;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
@@ -20,16 +22,16 @@ import com.tencent.smtt.sdk.WebStorage;
 import com.tencent.smtt.sdk.WebView;
 
 /**
- *ProgressWebView
- *@author gubin
- *@author date: 2017/9/27
- *@author csdn:http://blog.csdn.net/eueheuen
+ * ProgressWebView
  *
+ * @author gubin
+ * @author date: 2017/9/27
+ * @author csdn:http://blog.csdn.net/eueheuen
  */
 public class ProgressWebView extends WebView {
 
-    ProgressView mProgressview;
-    int progressColor = 0xFF00A9EC;
+    private ProgressView progressView;
+    private int progressColor;
 
 
     public ProgressWebView(Context context) {
@@ -42,38 +44,32 @@ public class ProgressWebView extends WebView {
 
     public ProgressWebView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ProgressWebView);
+        progressColor = typedArray.getColor(R.styleable.ProgressWebView_progress_color, 0xFF00A9EC);
         initViews();
     }
 
-    public int getProgressColor() {
-        return progressColor;
-    }
-
-    public void setProgressColor(int progressColor) {
-        this.progressColor = progressColor;
-    }
-
     private void initViews() {
-        mProgressview = new ProgressView(getContext());
-        mProgressview.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 6));
-        mProgressview.setDefaultColor(progressColor);
-        addView(mProgressview);
+        progressView = new ProgressView(getContext());
+        progressView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 6));
+        progressView.setDefaultColor(progressColor);
+        addView(progressView);
         this.setWebChromeClient(new ProgressWebChromeClient(null));
     }
 
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-      //  LayoutParams lp = (LayoutParams) mProgressview.getLayoutParams();
+        //  LayoutParams lp = (LayoutParams) progressView.getLayoutParams();
         super.onScrollChanged(l, t, oldl, oldt);
     }
 
 
 //        @Override
 //    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-//        LayoutParams lp = (LayoutParams) mProgressview.getLayoutParams();
+//        LayoutParams lp = (LayoutParams) progressView.getLayoutParams();
 //        lp.x = l;
 //        lp.y = t;
-//        mProgressview.setLayoutParams(lp);
+//        progressView.setLayoutParams(lp);
 //        super.onScrollChanged(l, t, oldl, oldt);
 //    }
 
@@ -84,8 +80,9 @@ public class ProgressWebView extends WebView {
 
     public class ProgressWebChromeClient extends WebChromeClient {
         WebChromeClient readClient;
+
         public ProgressWebChromeClient(WebChromeClient readClient) {
-            this.readClient = readClient==null?new WebChromeClient():readClient;
+            this.readClient = readClient == null ? new WebChromeClient() : readClient;
         }
 
         @Override
@@ -131,7 +128,7 @@ public class ProgressWebView extends WebView {
         @Override
         public void onGeolocationPermissionsShowPrompt(String s, GeolocationPermissionsCallback geolocationPermissionsCallback) {
             super.onGeolocationPermissionsShowPrompt(s, geolocationPermissionsCallback);
-            readClient.onGeolocationPermissionsShowPrompt(s,geolocationPermissionsCallback);
+            readClient.onGeolocationPermissionsShowPrompt(s, geolocationPermissionsCallback);
         }
 
         //        @Override
@@ -222,7 +219,7 @@ public class ProgressWebView extends WebView {
         public void onProgressChanged(WebView webView, int newProgress) {
             readClient.onProgressChanged(webView, newProgress);
             Log.i("progress", "onProgressChanged: " + newProgress);
-            mProgressview.setProgress(newProgress);
+            progressView.setProgress(newProgress);
         }
     }
 
