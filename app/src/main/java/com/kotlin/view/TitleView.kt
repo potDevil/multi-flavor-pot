@@ -38,30 +38,22 @@ class TitleView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     }
 
     fun setExitIcon(drawable: Drawable) {
-        if (iv_exit != null)
-            iv_exit?.setImageDrawable(drawable)
+        iv_exit?.setImageDrawable(drawable)
     }
 
     fun setTextTitle(text: String) {
-        if (tv_title != null)
-            tv_title?.text = text
+        tv_title?.text = text
     }
 
     fun setTitleBg(color: Int) {
-        if (toolbar_choice_city != null) {
-            toolbar_choice_city?.setBackgroundResource(color)
-        }
+        toolbar_choice_city?.setBackgroundResource(color)
     }
 
     fun setTitleLength(length: Int) {
-        if (tv_title != null) {
-            tv_title?.maxEms = length
-        }
+        tv_title?.maxEms = length
     }
 
     fun setTitleLine(lines: Int) {
-        if (tv_title != null)
-            tv_title?.maxLines = lines
-
+        tv_title?.maxLines = lines
     }
 }
