@@ -4,7 +4,7 @@ import android.content.Context
 import com.kotlin.service.bean.HttpResp
 import com.kotlin.service.bean.cate.CategoryInfo
 import com.kotlin.service.view.CateCategoryView
-import com.kotlin.service.view.View
+import com.kotlin.service.view.BaseView
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -20,9 +20,9 @@ class CateCategoryPresenter : BasePresenter {
         this.context = context
     }
 
-    override fun attachView(view: View) {
-        super.attachView(view)
-        cateCategoryView = view as CateCategoryView
+    override fun attachView(baseView: BaseView?) {
+        super.attachView(baseView)
+        cateCategoryView = baseView as CateCategoryView
     }
 
     fun getCateCategory() {

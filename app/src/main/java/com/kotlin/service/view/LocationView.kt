@@ -5,7 +5,7 @@ import com.kotlin.service.bean.weather.LocationInfo
 /**
  * Created by fzh on 2018/1/26.
  */
-interface LocationView : View {
+interface LocationView : BaseView {
     fun onSuccess(locationInfos: LocationInfo)
     fun onError(result: String)
 }

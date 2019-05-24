@@ -7,15 +7,20 @@ import android.widget.ImageView
 import com.kotlin.R
 import com.kotlin.common.IMAGE_URL
 import com.kotlin.service.presenter.Presenter
+import com.kotlin.service.view.BaseView
 import com.kotlin.utils.imageutils.GlideAvaUtil
 
 /**
  * Created by fzh on 2018/1/25.
  * 全图图片类
  */
-class ImageActivity : BaseActivity<Presenter>() {
+class ImageActivity : BaseActivity<Presenter, BaseView>() {
 
     lateinit var url: String
+
+    override fun initRequest() {
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

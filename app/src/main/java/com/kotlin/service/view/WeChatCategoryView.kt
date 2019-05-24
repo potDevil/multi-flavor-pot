@@ -5,7 +5,7 @@ import com.kotlin.service.bean.wechat.WeChatCategoryInfo
 /**
  * Created by fzh on 2018/3/29.
  */
-interface WeChatCategoryView : View {
+interface WeChatCategoryView : BaseView {
 
     fun onLoadWeChatDataSuccess(t: List<WeChatCategoryInfo>?)
 

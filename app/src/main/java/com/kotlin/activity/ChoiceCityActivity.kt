@@ -22,7 +22,7 @@ import org.greenrobot.eventbus.EventBus
  * Created by fzh on 2018/1/26.
  */
 
-class ChoiceCityActivity : BaseActivity<ChoiceCityPresenter>() {
+class ChoiceCityActivity : BaseActivity<ChoiceCityPresenter, ChoiceCityView>() {
 
     /**
      * 当前选中的级别
@@ -104,10 +104,14 @@ class ChoiceCityActivity : BaseActivity<ChoiceCityPresenter>() {
         showToast(ERROR_TIP)
     }
 
+    override fun initRequest() {
+        basePresenter = ChoiceCityPresenter(this)
+        baseView = choiceCityView
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choice_city)
-        bindRequest()
         getCityInfo()
         initView()
         initRecycleView()
@@ -120,12 +124,6 @@ class ChoiceCityActivity : BaseActivity<ChoiceCityPresenter>() {
             val intent = Intent(context, ChoiceCityActivity::class.java)
             context.startActivity(intent)
         }
-    }
-
-    private fun bindRequest() {
-        basePresenter = ChoiceCityPresenter(this)
-        basePresenter?.onCreate()
-        basePresenter?.attachView(choiceCityView)
     }
 
     private fun getCityInfo() {

@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_choice_city.*
 /**
  * Created by fzh on 2018/4/9.
  */
-class WeChatListInfoFragment : BaseLazyFragment<WeChatListPresenter>() {
+class WeChatListInfoFragment : BaseLazyFragment<WeChatListPresenter, WeChatListView>() {
 
     private var rv_wechat_info: RecyclerView? = null
     private var weChatListInfoAdapter: WeChatListInfoAdapter? = null
@@ -55,21 +55,19 @@ class WeChatListInfoFragment : BaseLazyFragment<WeChatListPresenter>() {
 
     }
 
+    override fun initRequest() {
+        basePresenter = WeChatListPresenter(context)
+        baseView = weChatListView
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             View.inflate(context, R.layout.fragment_wechat_info_list, null)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         page = 1
-        bindRequest()
         initView(view)
         refreshView()
-    }
-
-    private fun bindRequest() {
-        basePresenter = WeChatListPresenter(context)
-        basePresenter?.onCreate()
-        basePresenter?.attachView(weChatListView)
     }
 
     private fun initView(view: View?) {
@@ -95,7 +93,7 @@ class WeChatListInfoFragment : BaseLazyFragment<WeChatListPresenter>() {
     }
 
     private fun refreshView() {
-        refreshLayout.setOnRefreshListener {  basePresenter?.getWeChatList(cid, 1, size) }
+        refreshLayout.setOnRefreshListener { basePresenter?.getWeChatList(cid, 1, size) }
     }
 
     override fun lazyLoadData() {

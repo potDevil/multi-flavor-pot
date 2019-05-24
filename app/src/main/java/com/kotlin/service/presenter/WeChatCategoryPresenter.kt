@@ -3,7 +3,7 @@ package com.kotlin.service.presenter
 import android.content.Context
 import com.kotlin.service.bean.HttpListResp
 import com.kotlin.service.bean.wechat.WeChatCategoryInfo
-import com.kotlin.service.view.View
+import com.kotlin.service.view.BaseView
 import com.kotlin.service.view.WeChatCategoryView
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
@@ -19,9 +19,9 @@ class WeChatCategoryPresenter : BasePresenter {
         this.context = context
     }
 
-    override fun attachView(view: View) {
-        super.attachView(view)
-        weChatCategoryView = view as WeChatCategoryView
+    override fun attachView(baseView: BaseView?) {
+        super.attachView(baseView)
+        weChatCategoryView = baseView as WeChatCategoryView
     }
 
     fun getWeChatCategory() {

@@ -5,7 +5,7 @@ import com.kotlin.service.bean.cate.CateDetailListInfo
 /**
  * Created by fzh on 2018/4/2.
  */
-interface CateListView : View {
+interface CateListView : BaseView {
 
     fun onLoadCateListSuccess(t: CateDetailListInfo?)
 

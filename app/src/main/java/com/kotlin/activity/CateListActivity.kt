@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_cate_list.*
 /**
  * Created by fzh on 2018/3/30.
  */
-class CateListActivity : BaseActivity<CateListPresenter>() {
+class CateListActivity : BaseActivity<CateListPresenter, CateListView>() {
 
     private var cid: String = ""
     private var title: String = ""
@@ -63,21 +63,19 @@ class CateListActivity : BaseActivity<CateListPresenter>() {
         }
     }
 
+    override fun initRequest() {
+        basePresenter = CateListPresenter(this)
+        baseView = cateListView
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cate_list)
         cid = intent.getStringExtra(CID)
         title = intent.getStringExtra(TITLE)
-        bindRequest()
         refreshView()
         initView()
         initRecycleView()
-    }
-
-    private fun bindRequest() {
-        basePresenter = CateListPresenter(this)
-        basePresenter?.onCreate()
-        basePresenter?.attachView(cateListView)
     }
 
     private fun refreshView() {

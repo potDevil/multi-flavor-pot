@@ -5,7 +5,7 @@ import com.kotlin.service.bean.weather.ChinaCityInfo
 /**
  * Created by fzh on 2018/1/30.
  */
-interface ChoiceCityView : View {
+interface ChoiceCityView : BaseView {
 
     fun onProvinceSuccess(cityInfos: List<ChinaCityInfo>?)
 

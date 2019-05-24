@@ -3,7 +3,7 @@ package com.kotlin.service.presenter
 import android.content.Context
 import android.content.Intent
 import com.kotlin.service.manager.DataManager
-import com.kotlin.service.view.View
+import com.kotlin.service.view.BaseView
 import rx.subscriptions.CompositeSubscription
 
 /**
@@ -31,7 +31,7 @@ abstract class BasePresenter : Presenter {
     override fun pause() {
     }
 
-    override fun attachView(view: View) {
+    override fun attachView(baseView: BaseView?) {
     }
 
     override fun attachIncomingIntent(intent: Intent) {

@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_cate.*
  */
 
 //TODO 后期需要增加的两个功能 1、search cate 2、save cate
-class CateFragment : BaseLazyFragment<CateCategoryPresenter>() {
+class CateFragment : BaseLazyFragment<CateCategoryPresenter, CateCategoryView>() {
 
 //    override fun initPresenter(): CateCategoryPresenter {
 //        return CateCategoryPresenter(context)
@@ -59,22 +59,20 @@ class CateFragment : BaseLazyFragment<CateCategoryPresenter>() {
         }
     }
 
+    override fun initRequest() {
+        basePresenter = CateCategoryPresenter(context)
+        baseView = cateCategoryView
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             View.inflate(context, R.layout.fragment_cate, null)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Hawk.init(context).build()
-        bindRequest()
         initView()
         initRecyclerView()
         itemOnclickListener()
-    }
-
-    private fun bindRequest() {
-        basePresenter = CateCategoryPresenter(context)
-        basePresenter?.onCreate()
-        basePresenter?.attachView(cateCategoryView)
     }
 
     private fun initView() {

@@ -9,6 +9,7 @@ import com.kotlin.R
 import com.kotlin.common.WEBVIEW_TITLE
 import com.kotlin.common.WEBVIEW_URL
 import com.kotlin.service.presenter.Presenter
+import com.kotlin.service.view.BaseView
 import com.kotlin.view.TitleView
 import com.kotlin.view.webview.ProgressWebView
 import com.tencent.smtt.sdk.WebChromeClient
@@ -20,7 +21,8 @@ import java.util.*
 /**
  * Created by fzh on 2018/4/11.
  */
-class X5WebViewActivity : BaseActivity<Presenter>() {
+class X5WebViewActivity : BaseActivity<Presenter, BaseView>() {
+
     private var title = "WebView"
     private var url = "http://www.baidu.cn/"
     private var title_view: TitleView? = null
@@ -35,6 +37,10 @@ class X5WebViewActivity : BaseActivity<Presenter>() {
             intent.putExtra(WEBVIEW_URL, url)
             context.startActivity(intent)
         }
+    }
+
+    override fun initRequest() {
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

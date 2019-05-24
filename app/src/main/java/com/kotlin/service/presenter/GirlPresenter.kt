@@ -3,7 +3,7 @@ package com.kotlin.service.presenter
 import android.content.Context
 import com.kotlin.service.bean.BaiduGirlInfo
 import com.kotlin.service.view.GirlView
-import com.kotlin.service.view.View
+import com.kotlin.service.view.BaseView
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -19,8 +19,8 @@ class GirlPresenter : BasePresenter {
         this.context = context
     }
 
-    override fun attachView(view: View) {
-        mGirlView = view as GirlView
+    override fun attachView(baseView: BaseView?) {
+        mGirlView = baseView as GirlView
     }
 
     fun getGirlInfo(num: Int) {

@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.widget.Toast
-import com.kotlin.service.presenter.BasePresenter
 import com.kotlin.service.presenter.Presenter
 import org.greenrobot.eventbus.EventBus
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import com.kotlin.service.view.View
+import com.kotlin.service.view.BaseView
 
 
 /**
@@ -16,17 +14,24 @@ import com.kotlin.service.view.View
  * 懒加载fragment
  */
 
-abstract class BaseLazyFragment<T : Presenter> : Fragment() {
+abstract class BaseLazyFragment<T : Presenter, V : BaseView> : Fragment() {
+
     var basePresenter: T? = null
+    var baseView: V? = null
     private var mIsPrepared: Boolean = false
     private var mIsInit: Boolean = false
 
 //    protected abstract fun initPresenter(): T
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
+    protected abstract fun initRequest()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 //        basePresenter = initPresenter()
-//    }
+        initRequest()
+        basePresenter?.onCreate()
+        basePresenter?.attachView(baseView)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

@@ -6,14 +6,19 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import com.kotlin.R
 import com.kotlin.service.presenter.Presenter
+import com.kotlin.service.view.BaseView
 import kotlinx.android.synthetic.main.activity_splash.*
 
 /**
  * Created by fzh on 2018/1/25.
  */
-class SplashActivity : BaseActivity<Presenter>() {
+class SplashActivity : BaseActivity<Presenter, BaseView>() {
 
     private var alphaAnimation: AlphaAnimation? = null
+
+    override fun initRequest() {
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

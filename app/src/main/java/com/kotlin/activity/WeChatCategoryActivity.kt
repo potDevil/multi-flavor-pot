@@ -28,7 +28,7 @@ import java.util.*
 /**
  * Created by fzh on 2018/4/12.
  */
-class WeChatCategoryActivity : BaseActivity<WeChatCategoryPresenter>(), AdapterView.OnItemClickListener {
+class WeChatCategoryActivity : BaseActivity<WeChatCategoryPresenter, WeChatCategoryView>(), AdapterView.OnItemClickListener {
 
     private var otherCategoryList = ArrayList<WeChatCategoryInfo>()
     private var userCategoryList = ArrayList<WeChatCategoryInfo>()
@@ -61,12 +61,16 @@ class WeChatCategoryActivity : BaseActivity<WeChatCategoryPresenter>(), AdapterV
         }
     }
 
+    override fun initRequest() {
+        basePresenter = WeChatCategoryPresenter(this)
+        baseView = weChatCategoryView
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wechat_activity)
         setResult(RESULT_OK, intent)
 
-        bindRequest()
         basePresenter?.getWeChatCategory()
 
         userCategoryList = intent.getSerializableExtra(USER_CATEGORY) as ArrayList<WeChatCategoryInfo>
@@ -85,12 +89,6 @@ class WeChatCategoryActivity : BaseActivity<WeChatCategoryPresenter>(), AdapterV
 
         other_grid_view?.onItemClickListener = this
         user_grid_view?.onItemClickListener = this
-    }
-
-    private fun bindRequest() {
-        basePresenter = WeChatCategoryPresenter(this)
-        basePresenter?.onCreate()
-        basePresenter?.attachView(weChatCategoryView)
     }
 
     override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {

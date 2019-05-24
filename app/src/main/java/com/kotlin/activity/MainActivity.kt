@@ -9,17 +9,22 @@ import com.kotlin.fragment.CateFragment
 import com.kotlin.fragment.WeChatChoicenessFragment
 import com.kotlin.fragment.WeatherFragment
 import com.kotlin.service.presenter.Presenter
+import com.kotlin.service.view.BaseView
 import com.kotlin.utils.DoubleClickExit
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity<Presenter>() {
+class MainActivity : BaseActivity<Presenter, BaseView>() {
 
-    private var fragmentList: MutableList<Fragment> = ArrayList<Fragment>();
+    private var fragmentList: MutableList<Fragment> = ArrayList()
     private lateinit var weatherFragment: WeatherFragment
     private lateinit var cateFragment: CateFragment
 //    private lateinit var girlFragment: GirlFragment
     private lateinit var weChatChoicenessFragment: WeChatChoicenessFragment
     private lateinit var aboutFragment: AboutFragment
+
+    override fun initRequest() {
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

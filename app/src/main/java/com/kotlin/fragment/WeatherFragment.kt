@@ -29,7 +29,7 @@ import okhttp3.ResponseBody
 /**
  * Created by fzh on 2018/1/22.
  */
-class WeatherFragment : BaseLazyFragment<WeatherPresenter>(), View.OnClickListener {
+class WeatherFragment : BaseLazyFragment<WeatherPresenter, WeatherView>(), View.OnClickListener {
 
     private var cityStr: String? = null
     private var heWeatherInfo: WeatherInfo.HeWeatherBean? = null
@@ -73,6 +73,11 @@ class WeatherFragment : BaseLazyFragment<WeatherPresenter>(), View.OnClickListen
         }
     }
 
+    override fun initRequest() {
+        basePresenter = WeatherPresenter(context)
+        baseView = weatherView
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             View.inflate(context, R.layout.fragment_weather, null)
 
@@ -80,7 +85,6 @@ class WeatherFragment : BaseLazyFragment<WeatherPresenter>(), View.OnClickListen
         super.onViewCreated(view, savedInstanceState)
         Hawk.init(context).build()
         initView()
-        bindRequest()
         getWeatherData()
         setFloatingButton()
     }
@@ -105,12 +109,6 @@ class WeatherFragment : BaseLazyFragment<WeatherPresenter>(), View.OnClickListen
                 showApiDialog()
             }
         }
-    }
-
-    private fun bindRequest() {
-        basePresenter = WeatherPresenter(context)
-        basePresenter?.onCreate()
-        basePresenter?.attachView(weatherView)
     }
 
     private fun getWeatherData() {

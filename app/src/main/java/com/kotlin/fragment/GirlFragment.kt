@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_girl.*
  * Created by fzh on 2018/1/22.
  */
 @Deprecated("grilFragment")
-class GirlFragment : BaseLazyFragment<GirlPresenter>() {
+class GirlFragment : BaseLazyFragment<GirlPresenter, GirlView>() {
 
     var num = 0
     private var girlInfoList: MutableList<BaiduGirlInfo.DataBean> = ArrayList()
@@ -56,18 +56,16 @@ class GirlFragment : BaseLazyFragment<GirlPresenter>() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-         View.inflate(context, R.layout.fragment_girl, null)
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        bindRequest()
-        initView()
+    override fun initRequest() {
+        basePresenter = GirlPresenter(context)
+        baseView = girlView
     }
 
-    private fun bindRequest() {
-        basePresenter = GirlPresenter(context)
-        basePresenter?.onCreate()
-        basePresenter?.attachView(girlView)
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            View.inflate(context, R.layout.fragment_girl, null)
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        initView()
     }
 
     private fun initView() {

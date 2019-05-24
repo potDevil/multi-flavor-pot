@@ -2,7 +2,7 @@ package com.kotlin.service.presenter
 
 import android.content.Context
 import com.kotlin.service.bean.weather.WeatherInfo
-import com.kotlin.service.view.View
+import com.kotlin.service.view.BaseView
 import com.kotlin.service.view.WeatherView
 import okhttp3.ResponseBody
 import rx.Subscriber
@@ -19,9 +19,9 @@ class WeatherPresenter : BasePresenter {
         this.context = context
     }
 
-    override fun attachView(view: View) {
-        super.attachView(view)
-        weatherView = view as WeatherView
+    override fun attachView(baseView: BaseView?) {
+        super.attachView(baseView)
+        weatherView = baseView as WeatherView
     }
 
     fun getWeatherInfo(weatherId: String?) {

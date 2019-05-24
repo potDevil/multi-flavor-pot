@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_weather.*
  * Created by fzh on 2018/1/22.
  */
 @Deprecated("locationFragment")
-class WeatherFragmentDeprecated : BaseLazyFragment<LocationPresenter>() {
+class WeatherFragmentDeprecated : BaseLazyFragment<LocationPresenter, LocationView>() {
 
     var locationManager: LocationManager? = null
     var locationProvider: String? = null
@@ -37,24 +37,25 @@ class WeatherFragmentDeprecated : BaseLazyFragment<LocationPresenter>() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view: View = inflater!!.inflate(R.layout.fragment_weather, container, false)
+    override fun initRequest() {
         basePresenter = LocationPresenter(context)
-        return view
+        baseView = mLocationView
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater?.inflate(R.layout.fragment_weather, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initLocation()
-        bindRequest()
+        getInfo()
         setFloatingButton()
     }
 
-    private fun bindRequest() {
-        basePresenter?.onCreate()
-        basePresenter?.attachView(mLocationView)
+    private fun getInfo() {
         if (!TextUtils.isEmpty(locationStr))
-            basePresenter?.getLocationInfo(locationStr!!)
+            basePresenter?.getLocationInfo(locationStr)
     }
 
     @SuppressLint("MissingPermission")
@@ -126,7 +127,7 @@ class WeatherFragmentDeprecated : BaseLazyFragment<LocationPresenter>() {
             initLocation()
         } else {        // 隐藏
             //移除监听器
-            locationManager!!.removeUpdates(locationListener);
+            locationManager?.removeUpdates(locationListener);
         }
     }
 }

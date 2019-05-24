@@ -18,6 +18,7 @@ import com.kotlin.common.USER_CATEGORY
 import com.kotlin.common.WECHAT_USER_INFO
 import com.kotlin.service.bean.wechat.WeChatCategoryInfo
 import com.kotlin.service.presenter.BasePresenter
+import com.kotlin.service.view.BaseView
 import com.kotlin.utils.AndroidUtils
 import com.orhanobut.hawk.Hawk
 import kotlinx.android.synthetic.main.fragment_wechat_choiceness.*
@@ -34,7 +35,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorT
 /**
  * Created by fzh on 2018/4/8.
  */
-class WeChatChoicenessFragment : BaseLazyFragment<BasePresenter>(), ViewPager.OnPageChangeListener, View.OnClickListener {
+class WeChatChoicenessFragment : BaseLazyFragment<BasePresenter, BaseView>(), ViewPager.OnPageChangeListener, View.OnClickListener {
 
     companion object {
         const val REQUEST_WECHAT_ITEM = 1
@@ -63,6 +64,10 @@ class WeChatChoicenessFragment : BaseLazyFragment<BasePresenter>(), ViewPager.On
             initTitleItem()
             initIndicator()
         }
+    }
+
+    override fun initRequest() {
+
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =

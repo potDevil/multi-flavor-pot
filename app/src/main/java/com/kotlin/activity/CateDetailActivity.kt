@@ -17,13 +17,14 @@ import com.kotlin.utils.imageutils.GlideAvaUtil
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.kotlin.service.presenter.Presenter
+import com.kotlin.service.view.BaseView
 import kotlinx.android.synthetic.main.activity_cate_detail.*
 import java.util.*
 
 /**
  * Created by fzh on 2018/4/2.
  */
-class CateDetailActivity : BaseActivity<Presenter>() {
+class CateDetailActivity : BaseActivity<Presenter, BaseView>() {
 
     private var data: CateDetailListInfo.ListBean? = null
     private var cateCookingAdapter: CateCookingAdapter? = null
@@ -35,6 +36,10 @@ class CateDetailActivity : BaseActivity<Presenter>() {
             intent.putExtra(CATE_DETAIL, data)
             context.startActivity(intent)
         }
+    }
+
+    override fun initRequest() {
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

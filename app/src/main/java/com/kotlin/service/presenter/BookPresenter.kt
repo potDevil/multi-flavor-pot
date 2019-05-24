@@ -3,7 +3,7 @@ package com.kotlin.service.presenter
 import android.content.Context
 import com.kotlin.service.bean.Book
 import com.kotlin.service.view.BookView
-import com.kotlin.service.view.View
+import com.kotlin.service.view.BaseView
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -19,8 +19,8 @@ class BookPresenter : BasePresenter {
         this.context = context
     }
 
-    override fun attachView(view: View) {
-        mBookView = view as BookView
+    override fun attachView(baseView: BaseView?) {
+        mBookView = baseView as BookView
     }
 
     fun getSearchBooks(name: String, tag: String, start: Int, count: Int) {

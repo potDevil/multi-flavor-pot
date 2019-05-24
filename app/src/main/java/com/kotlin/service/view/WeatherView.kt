@@ -6,7 +6,7 @@ import okhttp3.ResponseBody
 /**
  * Created by fzh on 2018/1/31.
  */
-interface WeatherView : View {
+interface WeatherView : BaseView {
 
     fun onLoadWeatherSuccess(w: WeatherInfo?)
 
