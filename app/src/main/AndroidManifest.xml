@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.kotlin">
 
     <!--网络访问-->
@@ -21,7 +22,8 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon_pot"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name="com.kotlin.activity.SplashActivity"
             android:screenOrientation="portrait">

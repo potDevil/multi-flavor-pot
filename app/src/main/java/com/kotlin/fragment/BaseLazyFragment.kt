@@ -4,16 +4,29 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.widget.Toast
+import com.kotlin.service.presenter.BasePresenter
+import com.kotlin.service.presenter.Presenter
 import org.greenrobot.eventbus.EventBus
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.kotlin.service.view.View
+
 
 /**
  * Created by wentong.chen on 2017/11/7.
  * 懒加载fragment
  */
 
-abstract class BaseLazyFragment : Fragment() {
+abstract class BaseLazyFragment<T : Presenter> : Fragment() {
+    var basePresenter: T? = null
     private var mIsPrepared: Boolean = false
     private var mIsInit: Boolean = false
+
+//    protected abstract fun initPresenter(): T
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        basePresenter = initPresenter()
+//    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -33,6 +46,12 @@ abstract class BaseLazyFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        basePresenter?.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
     /**
      * 懒加载数据
      */
@@ -48,10 +67,5 @@ abstract class BaseLazyFragment : Fragment() {
         }
         mToast = Toast.makeText(context, s, Toast.LENGTH_SHORT)
         mToast?.show()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        EventBus.getDefault().unregister(this)
     }
 }

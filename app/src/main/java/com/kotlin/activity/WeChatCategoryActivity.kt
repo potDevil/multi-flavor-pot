@@ -16,6 +16,7 @@ import com.kotlin.common.ERROR_TIP
 import com.kotlin.common.USER_CATEGORY
 import com.kotlin.common.WECHAT_USER_INFO
 import com.kotlin.service.bean.wechat.WeChatCategoryInfo
+import com.kotlin.service.presenter.Presenter
 import com.kotlin.service.presenter.WeChatCategoryPresenter
 import com.kotlin.service.view.WeChatCategoryView
 import com.kotlin.view.TitleView
@@ -27,9 +28,7 @@ import java.util.*
 /**
  * Created by fzh on 2018/4/12.
  */
-class WeChatCategoryActivity : BaseActivity(), AdapterView.OnItemClickListener {
-
-    private lateinit var weChatCategoryPresenter: WeChatCategoryPresenter
+class WeChatCategoryActivity : BaseActivity<WeChatCategoryPresenter>(), AdapterView.OnItemClickListener {
 
     private var otherCategoryList = ArrayList<WeChatCategoryInfo>()
     private var userCategoryList = ArrayList<WeChatCategoryInfo>()
@@ -68,7 +67,7 @@ class WeChatCategoryActivity : BaseActivity(), AdapterView.OnItemClickListener {
         setResult(RESULT_OK, intent)
 
         bindRequest()
-        weChatCategoryPresenter.getWeChatCategory()
+        basePresenter?.getWeChatCategory()
 
         userCategoryList = intent.getSerializableExtra(USER_CATEGORY) as ArrayList<WeChatCategoryInfo>
 
@@ -89,9 +88,9 @@ class WeChatCategoryActivity : BaseActivity(), AdapterView.OnItemClickListener {
     }
 
     private fun bindRequest() {
-        weChatCategoryPresenter = WeChatCategoryPresenter(this)
-        weChatCategoryPresenter.onCreate()
-        weChatCategoryPresenter.attachView(weChatCategoryView)
+        basePresenter = WeChatCategoryPresenter(this)
+        basePresenter?.onCreate()
+        basePresenter?.attachView(weChatCategoryView)
     }
 
     override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
@@ -225,10 +224,5 @@ class WeChatCategoryActivity : BaseActivity(), AdapterView.OnItemClickListener {
         mLayoutParams.topMargin = y
         view.layoutParams = mLayoutParams
         return view
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        weChatCategoryPresenter.onStop()
     }
 }

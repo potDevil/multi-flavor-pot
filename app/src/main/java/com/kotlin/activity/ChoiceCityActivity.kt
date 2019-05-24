@@ -22,7 +22,7 @@ import org.greenrobot.eventbus.EventBus
  * Created by fzh on 2018/1/26.
  */
 
-class ChoiceCityActivity : BaseActivity() {
+class ChoiceCityActivity : BaseActivity<ChoiceCityPresenter>() {
 
     /**
      * 当前选中的级别
@@ -57,8 +57,6 @@ class ChoiceCityActivity : BaseActivity() {
     private var adapter: ChoiceCityAdapter? = null
     private var provinceInfos: List<ChinaCityInfo> = ArrayList()
     private var cityInfos: List<ChinaCityInfo> = ArrayList()
-
-    private lateinit var choiceCityPresenter: ChoiceCityPresenter
 
     private var choiceCityView = object : ChoiceCityView {
         override fun onProvinceSuccess(cityInfos: List<ChinaCityInfo>?) {
@@ -125,13 +123,13 @@ class ChoiceCityActivity : BaseActivity() {
     }
 
     private fun bindRequest() {
-        choiceCityPresenter = ChoiceCityPresenter(this)
-        choiceCityPresenter.onCreate()
-        choiceCityPresenter.attachView(choiceCityView)
+        basePresenter = ChoiceCityPresenter(this)
+        basePresenter?.onCreate()
+        basePresenter?.attachView(choiceCityView)
     }
 
     private fun getCityInfo() {
-        choiceCityPresenter.getProvincesInfo()
+        basePresenter?.getProvincesInfo()
     }
 
     private fun initView() {
@@ -157,13 +155,13 @@ class ChoiceCityActivity : BaseActivity() {
                 LEVEL_PROVINCE -> {
                     Handler().postDelayed({
                         provinceId = (adapter.getItem(position) as ChinaCityInfo).id
-                        choiceCityPresenter.getCityInfo(provinceId)
+                        basePresenter?.getCityInfo(provinceId)
                     }, 500L)
                 }
                 LEVEL_CITY -> {
                     Handler().postDelayed({
                         cityId = (adapter.getItem(position) as ChinaCityInfo).id
-                        choiceCityPresenter.getCountyInfo(provinceId, cityId)
+                        basePresenter?.getCountyInfo(provinceId, cityId)
                     }, 500L)
                 }
                 LEVEL_COUNTY -> Handler().postDelayed({
@@ -192,10 +190,5 @@ class ChoiceCityActivity : BaseActivity() {
                 titleText?.setTextTitle("市区")
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        choiceCityPresenter.onStop()
     }
 }

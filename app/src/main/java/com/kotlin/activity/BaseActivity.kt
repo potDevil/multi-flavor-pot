@@ -5,13 +5,17 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.widget.Toast
+import com.kotlin.service.presenter.Presenter
 import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by fuzhihuang on 2017/9/14.
  */
 
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity<T : Presenter> : AppCompatActivity() {
+
+    var basePresenter: T? = null
+
     // lateinit property mToast has not been initialized 懒加载还未被初始化
     private var mToast: Toast? = null
 
@@ -44,6 +48,7 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        basePresenter?.onStop()
         EventBus.getDefault().unregister(this)
     }
 }

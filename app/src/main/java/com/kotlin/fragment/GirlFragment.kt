@@ -20,13 +20,12 @@ import kotlinx.android.synthetic.main.fragment_girl.*
  * Created by fzh on 2018/1/22.
  */
 @Deprecated("grilFragment")
-class GirlFragment : BaseLazyFragment() {
+class GirlFragment : BaseLazyFragment<GirlPresenter>() {
 
     var num = 0
     private var girlInfoList: MutableList<BaiduGirlInfo.DataBean> = ArrayList()
     private lateinit var girlAdapter: GirlAdapter
 
-    private lateinit var girlPresenter: GirlPresenter
     private var girlView: GirlView = object : GirlView {
         override fun onSuccess(girlInfo: BaiduGirlInfo) {
             refreshLayout.finishRefresh()               // 结束刷新
@@ -66,9 +65,9 @@ class GirlFragment : BaseLazyFragment() {
     }
 
     private fun bindRequest() {
-        girlPresenter = GirlPresenter(context)
-        girlPresenter.onCreate()
-        girlPresenter.attachView(girlView)
+        basePresenter = GirlPresenter(context)
+        basePresenter?.onCreate()
+        basePresenter?.attachView(girlView)
     }
 
     private fun initView() {
@@ -78,11 +77,11 @@ class GirlFragment : BaseLazyFragment() {
         // 上拉加载
         girlAdapter.setOnLoadMoreListener({
             if (girlAdapter.data.size > 0) {
-                girlPresenter.getGirlInfo(num * 10)
+                basePresenter?.getGirlInfo(num * 10)
             }
         }, recyclerview)
         // 下拉刷新
-        refreshLayout.setOnRefreshListener { girlPresenter.getGirlInfo(0) }
+        refreshLayout.setOnRefreshListener { basePresenter?.getGirlInfo(0) }
         // adapter条目点击
         girlAdapter.setOnItemClickListener { adapter, _, position ->
             val data = adapter.data[position] as BaiduGirlInfo.DataBean
@@ -92,11 +91,6 @@ class GirlFragment : BaseLazyFragment() {
     }
 
     override fun lazyLoadData() {
-        girlPresenter.getGirlInfo(num * 10)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        girlPresenter.onStop()
+        basePresenter?.getGirlInfo(num * 10)
     }
 }

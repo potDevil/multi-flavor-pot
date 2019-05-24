@@ -24,9 +24,12 @@ import kotlinx.android.synthetic.main.fragment_cate.*
  */
 
 //TODO 后期需要增加的两个功能 1、search cate 2、save cate
-class CateFragment : BaseLazyFragment() {
+class CateFragment : BaseLazyFragment<CateCategoryPresenter>() {
 
-    private lateinit var cateCategoryPresent: CateCategoryPresenter
+//    override fun initPresenter(): CateCategoryPresenter {
+//        return CateCategoryPresenter(context)
+//    }
+
     private var cateCategoryAdapter: CateCategoryAdapter? = null
     private var cateDetailAdapter: CateDetailAdapter? = null
     private var categoryInfos: CategoryInfo? = null
@@ -69,9 +72,9 @@ class CateFragment : BaseLazyFragment() {
     }
 
     private fun bindRequest() {
-        cateCategoryPresent = CateCategoryPresenter(context)
-        cateCategoryPresent.onCreate()
-        cateCategoryPresent.attachView(cateCategoryView)
+        basePresenter = CateCategoryPresenter(context)
+        basePresenter?.onCreate()
+        basePresenter?.attachView(cateCategoryView)
     }
 
     private fun initView() {
@@ -88,7 +91,7 @@ class CateFragment : BaseLazyFragment() {
         rv_list_content.layoutManager = GridLayoutManager(context, 3)
         rv_list_content.adapter = cateDetailAdapter
         // 下拉刷新
-        refreshLayout.setOnRefreshListener { cateCategoryPresent.getCateCategory() }
+        refreshLayout.setOnRefreshListener {  basePresenter?.getCateCategory() }
     }
 
     private fun itemOnclickListener() {
@@ -116,11 +119,6 @@ class CateFragment : BaseLazyFragment() {
     }
 
     override fun lazyLoadData() {
-        cateCategoryPresent.getCateCategory()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        cateCategoryPresent.onStop()
+        basePresenter?.getCateCategory()
     }
 }

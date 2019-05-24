@@ -20,9 +20,8 @@ import kotlinx.android.synthetic.main.activity_choice_city.*
 /**
  * Created by fzh on 2018/4/9.
  */
-class WeChatListInfoFragment : BaseLazyFragment() {
+class WeChatListInfoFragment : BaseLazyFragment<WeChatListPresenter>() {
 
-    private lateinit var weChatListPresenter: WeChatListPresenter
     private var rv_wechat_info: RecyclerView? = null
     private var weChatListInfoAdapter: WeChatListInfoAdapter? = null
     private var cid = ""
@@ -68,9 +67,9 @@ class WeChatListInfoFragment : BaseLazyFragment() {
     }
 
     private fun bindRequest() {
-        weChatListPresenter = WeChatListPresenter(context)
-        weChatListPresenter.onCreate()
-        weChatListPresenter.attachView(weChatListView)
+        basePresenter = WeChatListPresenter(context)
+        basePresenter?.onCreate()
+        basePresenter?.attachView(weChatListView)
     }
 
     private fun initView(view: View?) {
@@ -79,11 +78,11 @@ class WeChatListInfoFragment : BaseLazyFragment() {
         rv_wechat_info?.layoutManager = LinearLayoutManager(context)
         rv_wechat_info?.adapter = weChatListInfoAdapter
         cid = arguments.get(WECHAT_CID) as String
-        weChatListPresenter.getWeChatList(cid, page, size)
+        basePresenter?.getWeChatList(cid, page, size)
 
         weChatListInfoAdapter?.setOnLoadMoreListener({
             if (weChatListInfoAdapter?.data?.size ?: 0 > 0) {
-                weChatListPresenter.getWeChatList(cid, page, size)
+                basePresenter?.getWeChatList(cid, page, size)
             }
         }, rv_wechat_info)
 
@@ -96,21 +95,16 @@ class WeChatListInfoFragment : BaseLazyFragment() {
     }
 
     private fun refreshView() {
-        refreshLayout.setOnRefreshListener { weChatListPresenter.getWeChatList(cid, 1, size) }
+        refreshLayout.setOnRefreshListener {  basePresenter?.getWeChatList(cid, 1, size) }
     }
 
     override fun lazyLoadData() {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        weChatListPresenter.onStop()
-    }
-
     override fun onHiddenChanged(hidden: Boolean) {
         if (hidden) {
-            weChatListPresenter.onStop()
+            basePresenter?.onStop()
         }
     }
 }

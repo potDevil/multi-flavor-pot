@@ -29,7 +29,7 @@ import okhttp3.ResponseBody
 /**
  * Created by fzh on 2018/1/22.
  */
-class WeatherFragment : BaseLazyFragment(), View.OnClickListener {
+class WeatherFragment : BaseLazyFragment<WeatherPresenter>(), View.OnClickListener {
 
     private var cityStr: String? = null
     private var heWeatherInfo: WeatherInfo.HeWeatherBean? = null
@@ -38,11 +38,10 @@ class WeatherFragment : BaseLazyFragment(), View.OnClickListener {
     private var apiNum: String? = null
     private var pmNum: String? = null
 
-    private lateinit var weatherPresenter: WeatherPresenter
     private var weatherView: WeatherView = object : WeatherView {
 
         override fun onLoadWeatherSuccess(w: WeatherInfo?) {
-            weatherPresenter.getPicture()
+            basePresenter?.getPicture()
             heWeatherInfo = w?.HeWeather?.get(0)
             Hawk.put(WEATHER_INFO, w)
             setData()
@@ -109,15 +108,15 @@ class WeatherFragment : BaseLazyFragment(), View.OnClickListener {
     }
 
     private fun bindRequest() {
-        weatherPresenter = WeatherPresenter(context)
-        weatherPresenter.onCreate()
-        weatherPresenter.attachView(weatherView)
+        basePresenter = WeatherPresenter(context)
+        basePresenter?.onCreate()
+        basePresenter?.attachView(weatherView)
     }
 
     private fun getWeatherData() {
         val saveCity: String = Hawk.get<String>(CITY_NAME, BEIJING_ID)
         cityStr = saveCity
-        weatherPresenter.getWeatherInfo(saveCity)   // 默认查询Id北京
+        basePresenter?.getWeatherInfo(saveCity)   // 默认查询Id北京
     }
 
     private fun setFloatingButton() {
@@ -182,7 +181,7 @@ class WeatherFragment : BaseLazyFragment(), View.OnClickListener {
             FragmentActivity.RESULT_OK -> {
                 if (!TextUtils.isEmpty(data?.extras?.getString(COUNTY_ID))) {
                     cityStr = data?.extras?.getString(COUNTY_ID)
-                    weatherPresenter.getWeatherInfo(data?.extras?.getString(COUNTY_ID))
+                    basePresenter?.getWeatherInfo(data?.extras?.getString(COUNTY_ID))
                 }
             }
         }

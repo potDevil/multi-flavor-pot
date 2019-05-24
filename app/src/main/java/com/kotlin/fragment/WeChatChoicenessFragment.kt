@@ -17,6 +17,7 @@ import com.kotlin.adapter.WeChatPageAdapter
 import com.kotlin.common.USER_CATEGORY
 import com.kotlin.common.WECHAT_USER_INFO
 import com.kotlin.service.bean.wechat.WeChatCategoryInfo
+import com.kotlin.service.presenter.BasePresenter
 import com.kotlin.utils.AndroidUtils
 import com.orhanobut.hawk.Hawk
 import kotlinx.android.synthetic.main.fragment_wechat_choiceness.*
@@ -33,7 +34,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorT
 /**
  * Created by fzh on 2018/4/8.
  */
-class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListener, View.OnClickListener {
+class WeChatChoicenessFragment : BaseLazyFragment<BasePresenter>(), ViewPager.OnPageChangeListener, View.OnClickListener {
 
     companion object {
         const val REQUEST_WECHAT_ITEM = 1
@@ -75,7 +76,7 @@ class WeChatChoicenessFragment : BaseLazyFragment(), ViewPager.OnPageChangeListe
     }
 
     private fun initTitleItem() {
-        if (!Hawk.get<ArrayList<WeChatCategoryInfo>>(WECHAT_USER_INFO, ArrayList()).isEmpty()) {
+        if (Hawk.get<ArrayList<WeChatCategoryInfo>>(WECHAT_USER_INFO, ArrayList()).isNotEmpty()) {
             userCategoryList = Hawk.get<ArrayList<WeChatCategoryInfo>>(WECHAT_USER_INFO, ArrayList())
         } else {
             var weChatCategory: WeChatCategoryInfo?

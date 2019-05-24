@@ -19,9 +19,8 @@ import kotlinx.android.synthetic.main.activity_cate_list.*
 /**
  * Created by fzh on 2018/3/30.
  */
-class CateListActivity : BaseActivity() {
+class CateListActivity : BaseActivity<CateListPresenter>() {
 
-    private lateinit var cateListPresenter: CateListPresenter
     private var cid: String = ""
     private var title: String = ""
     private var page: Int = 1
@@ -76,13 +75,13 @@ class CateListActivity : BaseActivity() {
     }
 
     private fun bindRequest() {
-        cateListPresenter = CateListPresenter(this)
-        cateListPresenter.onCreate()
-        cateListPresenter.attachView(cateListView)
+        basePresenter = CateListPresenter(this)
+        basePresenter?.onCreate()
+        basePresenter?.attachView(cateListView)
     }
 
     private fun refreshView() {
-        cateListPresenter.getCateListInfo(cid, page, size)
+        basePresenter?.getCateListInfo(cid, page, size)
     }
 
     private fun initView() {
@@ -105,13 +104,8 @@ class CateListActivity : BaseActivity() {
 
         cateListAdapter?.setOnLoadMoreListener({
             if (cateListAdapter?.data?.size ?: 0 > 0) {
-                cateListPresenter.getCateListInfo(cid, page, size)
+                basePresenter?.getCateListInfo(cid, page, size)
             }
         }, rv_cate_list)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        cateListPresenter.onStop()
     }
 }

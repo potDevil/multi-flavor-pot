@@ -8,10 +8,11 @@ import com.kotlin.fragment.AboutFragment
 import com.kotlin.fragment.CateFragment
 import com.kotlin.fragment.WeChatChoicenessFragment
 import com.kotlin.fragment.WeatherFragment
+import com.kotlin.service.presenter.Presenter
 import com.kotlin.utils.DoubleClickExit
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<Presenter>() {
 
     private var fragmentList: MutableList<Fragment> = ArrayList<Fragment>();
     private lateinit var weatherFragment: WeatherFragment

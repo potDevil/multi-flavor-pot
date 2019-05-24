@@ -21,13 +21,12 @@ import kotlinx.android.synthetic.main.fragment_weather.*
  * Created by fzh on 2018/1/22.
  */
 @Deprecated("locationFragment")
-class WeatherFragmentDeprecated : BaseLazyFragment() {
+class WeatherFragmentDeprecated : BaseLazyFragment<LocationPresenter>() {
 
     var locationManager: LocationManager? = null
     var locationProvider: String? = null
     var locationStr: String? = null
 
-    private lateinit var mLocationPresenter: LocationPresenter
     private var mLocationView: LocationView = object : LocationView {
         override fun onSuccess(locationInfos: LocationInfo) {
 //            tv1.setText(locationInfos.result.formatted_address.toString())
@@ -40,7 +39,7 @@ class WeatherFragmentDeprecated : BaseLazyFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view: View = inflater!!.inflate(R.layout.fragment_weather, container, false)
-        mLocationPresenter = LocationPresenter(context)
+        basePresenter = LocationPresenter(context)
         return view
     }
 
@@ -52,10 +51,10 @@ class WeatherFragmentDeprecated : BaseLazyFragment() {
     }
 
     private fun bindRequest() {
-        mLocationPresenter.onCreate()
-        mLocationPresenter.attachView(mLocationView)
+        basePresenter?.onCreate()
+        basePresenter?.attachView(mLocationView)
         if (!TextUtils.isEmpty(locationStr))
-            mLocationPresenter.getLocationInfo(locationStr!!)
+            basePresenter?.getLocationInfo(locationStr!!)
     }
 
     @SuppressLint("MissingPermission")
@@ -107,7 +106,7 @@ class WeatherFragmentDeprecated : BaseLazyFragment() {
             // 如果地理位置发生变化,重新显示
             showLocation()
             if (!TextUtils.isEmpty(locationStr))
-                mLocationPresenter.getLocationInfo(locationStr)
+                basePresenter?.getLocationInfo(locationStr)
         }
     }
 

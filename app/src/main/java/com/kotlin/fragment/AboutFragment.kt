@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.kotlin.R
 import com.kotlin.service.bean.OnceEvent
+import com.kotlin.service.presenter.BasePresenter
 import kotlinx.android.synthetic.main.fragment_about.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -16,7 +17,7 @@ import org.greenrobot.eventbus.ThreadMode
 /**
  * Created by fzh on 2018/1/22.
  */
-class AboutFragment : BaseLazyFragment(), View.OnClickListener {
+class AboutFragment : BaseLazyFragment<BasePresenter>(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
@@ -64,8 +65,6 @@ class AboutFragment : BaseLazyFragment(), View.OnClickListener {
 
         }
     }
-
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onOnceEvent(event: OnceEvent? = null) {

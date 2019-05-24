@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import com.kotlin.R
+import com.kotlin.service.presenter.Presenter
 import kotlinx.android.synthetic.main.activity_splash.*
 
 /**
  * Created by fzh on 2018/1/25.
  */
-class SplashActivity : BaseActivity() {
+class SplashActivity : BaseActivity<Presenter>() {
 
     private var alphaAnimation: AlphaAnimation? = null
 
