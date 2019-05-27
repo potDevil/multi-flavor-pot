@@ -24,7 +24,10 @@ abstract class BasePresenter : Presenter {
 
     override fun onStop() {
         if (compositeSubscription.hasSubscriptions()) {
+            // compositeSubscription.unsubscribe()解除绑定并且之后的绑定都无效
+            // compositeSubscription.clear()      解除绑定但是之后仍然可以继续绑定
             compositeSubscription.unsubscribe()
+
         }
     }
 
