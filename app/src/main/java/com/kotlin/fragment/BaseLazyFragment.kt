@@ -18,8 +18,8 @@ abstract class BaseLazyFragment<T : Presenter, V : BaseView> : Fragment() {
 
     var basePresenter: T? = null
     var baseView: V? = null
-    private var mIsPrepared: Boolean = false
-    private var mIsInit: Boolean = false
+    private var isPrepared: Boolean = false
+    private var isInit: Boolean = false
 
 //    protected abstract fun initPresenter(): T
 
@@ -35,7 +35,7 @@ abstract class BaseLazyFragment<T : Presenter, V : BaseView> : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mIsPrepared = true
+        isPrepared = true
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
@@ -45,8 +45,8 @@ abstract class BaseLazyFragment<T : Presenter, V : BaseView> : Fragment() {
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser && mIsPrepared && !mIsInit) {
-            mIsInit = true
+        if (isVisibleToUser && isPrepared && !isInit) {
+            isInit = true
             lazyLoadData()
         }
     }
@@ -62,15 +62,15 @@ abstract class BaseLazyFragment<T : Presenter, V : BaseView> : Fragment() {
      */
     protected abstract fun lazyLoadData()
 
-    private var mToast: Toast? = null
+    private var toast: Toast? = null
 
     fun showToast(s: String) {
         if (TextUtils.isEmpty(s))
             return
-        if (mToast != null) {
-            mToast?.cancel()
+        if (toast != null) {
+            toast?.cancel()
         }
-        mToast = Toast.makeText(context, s, Toast.LENGTH_SHORT)
-        mToast?.show()
+        toast = Toast.makeText(context, s, Toast.LENGTH_SHORT)
+        toast?.show()
     }
 }

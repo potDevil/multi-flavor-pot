@@ -1,6 +1,5 @@
 package com.kotlin.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -21,8 +20,8 @@ abstract class BaseActivity<T : Presenter, V : BaseView> : AppCompatActivity() {
 
     protected abstract fun initRequest()
 
-    // lateinit property mToast has not been initialized 懒加载还未被初始化
-    private var mToast: Toast? = null
+    // lateinit property toast has not been initialized 懒加载还未被初始化
+    private var toast: Toast? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +38,9 @@ abstract class BaseActivity<T : Presenter, V : BaseView> : AppCompatActivity() {
     fun showToast(s: String) {
         if (TextUtils.isEmpty(s))
             return
-        mToast?.cancel()
-        mToast = Toast.makeText(this, s, Toast.LENGTH_SHORT)
-        mToast?.show()
+        toast?.cancel()
+        toast = Toast.makeText(this, s, Toast.LENGTH_SHORT)
+        toast?.show()
     }
 
     //    @Override
