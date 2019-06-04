@@ -7,9 +7,9 @@ package com.kotlin.common
 // http请求有关
 val ERROR_SHOW_HISTORY_TIP = "亲！网络故障,我们将为您提供历史记录~"
 val ERROR_TIP = "亲！网络故障~"
-val ERROR_NO_CONTENT = "暂无内容"
+val ERROR_NO_CONTENT = "暂无内容~"
 val ERROR_ON_PICTURE = "暂无图片~"
-val PICTURE_URL = "http://pic.58pic.com/58pic/13/90/47/84F58PICKNh_1024.jpg"
+val PICTURE_URL = "http://www.juimg.com/tuku/yulantu/140226/330565-140226123K831.jpg"
 
 // 天气有关
 val WEATHER_INFO = "WEATHER_INFO"
